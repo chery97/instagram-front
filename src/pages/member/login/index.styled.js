@@ -1,16 +1,24 @@
 import styled from 'styled-components';
 
 const Layout = styled.div`
-  width: 100%;
+  height: 1100px;
   margin-top: 32px;
   display: flex;
   justify-content: center;
 `;
 
 const Left = styled.div`
-  height: 581px;
   width: 468px;
-  background-image: url("https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones.png?__makehaste_cache_breaker=HOgRclNOosk");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LeftImgBox = styled.div`
+  position: absolute;
+  width: 300px;
+  height: 300px;
 `;
 
 const RightContainer = styled.div`
@@ -19,23 +27,25 @@ const RightContainer = styled.div`
   justify-content: center;
   margin-top: 12px;
   max-width: 350px;
-  border: 1px solid rgb(219, 219, 219);
   width: 100%;
   align-items: center;
 `;
 
-const Right = styled.div`
+const RightLoginForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 12px;
+  padding-bottom: 17px;
   max-width: 350px;
   width: 100%;
   align-items: center;
+  border: 1px solid rgb(219, 219, 219);
 `;
 
 const LogoBox = styled.div`
-  
+  margin-top: 36px;
+  margin-bottom: 12px;
 `;
 
 const Logo = styled.div`
@@ -60,17 +70,20 @@ const LoginBtn = styled.button`
   background-color: rgb(0, 149, 246);
   opacity: .7;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 900;
   border: 1px solid transparent;
   border-radius: 10px;
   width: 268px;
   height: 32px;
+  margin: 8px 40px;
 `;
 
 const DividerBox = styled.div`
   display: flex;
   justify-content: center;
   width: 77%;
+  margin: 14px 40px 22px;
 `;
 
 const Divider = styled.div`
@@ -87,11 +100,113 @@ const DividerText = styled.p`
   width: 90px;
 `;
 
+const FacebookLoginBox = styled.div`
+  margin: 0 40px 6px;
+  width: 77%;
+  height: 35px;
+`;
+
+const FacebookLoginBtn = styled.button`
+  height: 20px;
+  border: none;
+  background-color:transparent;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+  display: inline-block;
+`;
+
+const FacebookIcon = styled.span`
+  background-image: url("https://static.cdninstagram.com/rsrc.php/v3/y5/r/TJztmXpWTmS.png");
+  width: 16px;
+  height: 16px;
+  background-position: -414px -259px;
+  background-repeat: no-repeat;
+  display: inherit;
+  margin-right: 5px;
+`;
+
+const FacebookText = styled.span`
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: #385185;
+  line-height: 15px;
+`;
+
+const FindPasswordText = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  color: #00376B;
+  width: 100%;
+  text-align: center;
+  line-height: 15px;
+  cursor: pointer;
+`;
+
+const JoinBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 12px;
+  padding-bottom: 17px;
+  max-width: 350px;
+  width: 100%;
+  align-items: center;
+  border: 1px solid rgb(219, 219, 219);
+`;
+
+const JoinText = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  a {
+    color: #0095F6;
+    font-weight: bold;
+    cursor: pointer;
+  }
+`;
+
+const AppIntroduceBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 12px;
+  padding-bottom: 17px;
+  max-width: 350px;
+  width: 100%;
+  align-items: center;
+`;
+
+const AppTextBox = styled.div`
+  margin: 10px 20px;
+`;
+
+const AppText = styled.span`
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+const AppIconBox = styled.div`
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  a {
+    &:first-child{
+      margin-right: 5px;
+    }
+  }
+  img {
+    width: 135px;
+    height: 40px;
+  }
+`;
+
 export const LoginStyle = {
     Layout,
     Left,
+    LeftImgBox,
     RightContainer,
-    Right,
+    RightLoginForm,
     LogoBox,
     Logo,
     LoginInput,
@@ -99,4 +214,15 @@ export const LoginStyle = {
     DividerBox,
     Divider,
     DividerText,
+    FacebookLoginBox,
+    FacebookLoginBtn,
+    FacebookIcon,
+    FacebookText,
+    FindPasswordText,
+    JoinBox,
+    JoinText,
+    AppIntroduceBox,
+    AppTextBox,
+    AppText,
+    AppIconBox,
 }
