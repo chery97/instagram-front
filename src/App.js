@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import {Outlet} from "react-router-dom";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           로그인
         </a>
       </header>
+      <Outlet />
     </div>
   );
 }

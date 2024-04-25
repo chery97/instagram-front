@@ -96,7 +96,18 @@ const Divider = styled.div`
 const DividerText = styled.p`
   margin: 0 18px;
   font-size: 14px;
-  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  &:before, &:after {
+    content: "";
+    background-color: rgb(219, 219, 219);
+    width: 200px;
+    height: 1px;
+    position: absolute;
+    padding: 0 10px;
+  }
 `;
 
 const FacebookLoginBox = styled.div`
@@ -112,7 +123,9 @@ const FacebookLoginBtn = styled.button`
   cursor: pointer;
   margin-top: 10px;
   width: 100%;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const FacebookIcon = styled.span`
@@ -148,7 +161,6 @@ const JoinBox = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 12px;
-  padding-bottom: 17px;
   max-width: 350px;
   width: 100%;
   align-items: center;
@@ -158,6 +170,7 @@ const JoinBox = styled.div`
 const JoinText = styled.p`
   font-size: 14px;
   font-weight: 600;
+  padding: 10px 0;
   a {
     color: #0095F6;
     font-weight: bold;
