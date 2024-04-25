@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 const Layout = styled.div`
-  height: 1100px;
-  margin-top: 32px;
+  height: 100vh;
   display: flex;
   justify-content: center;
 `;
