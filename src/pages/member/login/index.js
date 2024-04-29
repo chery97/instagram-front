@@ -1,4 +1,4 @@
-import {LoginStyle as S} from "./index.styled";
+import { LoginStyle as S } from "./index.styled";
 
 const Login = () => {
     return (

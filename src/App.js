@@ -1,4 +1,4 @@
-import { BrowserRouter, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { GlobalStyle } from './pages/style/global-style';
 
 import './App.css';

@@ -1,5 +1,5 @@
 import React from "react";
-import {RegisterStyle as S} from "./index.styled";
+import { RegisterStyle as S } from "./index.styled";
 
 const Register = () => {
 
