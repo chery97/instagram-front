@@ -1,12 +1,24 @@
 import { LoginStyle as S } from "./index.styled";
+import Navbar from "../../../components/navbar";
+import { Pc, Tablet } from "../../../hooks/useDevice";
 
 const Login = () => {
     return (
         <S.Layout>
-            <S.Left>
-                <img src="https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones.png?__makehaste_cache_breaker=HOgRclNOosk"/>
-                <S.LeftImgBox></S.LeftImgBox>
-            </S.Left>
+            <Pc>
+                <Navbar/>
+                <S.Left>
+                    <img src="https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones.png?__makehaste_cache_breaker=HOgRclNOosk"/>
+                    <S.LeftImgBox></S.LeftImgBox>
+                </S.Left>
+            </Pc>
+            <Tablet>
+                <Navbar/>
+                <S.Left>
+                    <img src="https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones.png?__makehaste_cache_breaker=HOgRclNOosk"/>
+                    <S.LeftImgBox></S.LeftImgBox>
+                </S.Left>
+            </Tablet>
             <S.RightContainer>
                 <S.RightLoginForm>
                     <S.LogoBox>
