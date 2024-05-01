@@ -21,3 +21,9 @@ export const Pc = ({ children }) => {
     });
     return <>{isPc && children}</>
 }
+
+export const mediaQueries = {
+    desktop: `@media (min-width:1160px)`,
+    tablet: `@media (min-width:768px) and (max-width:1159px)`,
+    mobile: `@media (max-width:767px)`,
+};
