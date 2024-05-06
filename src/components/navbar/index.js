@@ -18,8 +18,6 @@ const NavbarContainer = styled.div`
   width: 244px;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  padding: 12px 12px 20px 12px;
   background-color: black;
   ${mediaQueries.mobile} {
     font-size: 16px;
@@ -31,6 +29,14 @@ const NavbarContainer = styled.div`
   ${mediaQueries.desktop} {
     font-size: 16px;
   }
+`;
+
+const NavBarLayout = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 20px 12px;
 `;
 
 const LogoBox = styled.div`
@@ -115,6 +121,18 @@ const BottomText = styled.div`
   align-items: center;
 `;
 
+const SubLayout = styled.div`
+  width: 397px;
+  height: 100vh;
+  bottom: 0;
+  left: 153px;
+  position: absolute;
+  background-color: black;
+  img, span {
+    filter: invert(100%);
+  }
+`;
+
 const Navbar = () => {
     const mainContents = [
         {'id': 'Home', 'label': '홈', 'image': {Home}},
@@ -140,48 +158,66 @@ const Navbar = () => {
         contents.image = contents.image[id];
     })
 
+    const openSubLayout = (id) => {
+        if (id === "Search") {
+            console.log(id)
+        }
+    }
+
     return (
         <>
             <NavbarContainer>
-                <LogoBox>
-                    <LogoInner to={'/'}>
-                        <img src={Logo1} alt=''/>
-                    </LogoInner>
-                </LogoBox>
-                <MiddleBox>
-                    {mainContents.map((contents, index) => (
-                        <React.Fragment key={index}>
-                            <MiddleInner>
-                                <Tablet>
-                                    <img src={contents.image}  alt=''/>
-                                </Tablet>
-                                <Pc>
-                                    <img src={contents.image}  alt=''/>
-                                    <MiddleText>
-                                        <span>{contents.label}</span>
-                                    </MiddleText>
-                                </Pc>
-                            </MiddleInner>
-                        </React.Fragment>
-                    ))}
-                </MiddleBox>
-                <BottomBox>
-                    {bottomContents.map((contents, index) => (
-                        <React.Fragment key={index}>
-                            <BottomInner>
-                                <Tablet>
-                                    <img src={contents.image}  alt=''/>
-                                </Tablet>
-                                <Pc>
-                                    <img src={contents.image}  alt=''/>
-                                    <BottomText>
-                                        <span>{contents.label}</span>
-                                    </BottomText>
-                                </Pc>
-                            </BottomInner>
-                        </React.Fragment>
-                    ))}
-                </BottomBox>
+                <NavBarLayout>
+                    <LogoBox>
+                        <LogoInner to={'/'}>
+                            <img src={Logo1} alt=''/>
+                        </LogoInner>
+                    </LogoBox>
+                    <MiddleBox>
+                        {mainContents.map((contents, index) => (
+                            <React.Fragment key={index}>
+                                <MiddleInner onClick={() => openSubLayout(contents.id)}>
+                                    <Tablet>
+                                        <img src={contents.image}  alt=''/>
+                                    </Tablet>
+                                    <Pc>
+                                        <img src={contents.image}  alt=''/>
+                                        <MiddleText>
+                                            <span>{contents.label}</span>
+                                        </MiddleText>
+                                    </Pc>
+                                </MiddleInner>
+                            </React.Fragment>
+                        ))}
+                    </MiddleBox>
+                    <BottomBox>
+                        {bottomContents.map((contents, index) => (
+                            <React.Fragment key={index}>
+                                <BottomInner>
+                                    <Tablet>
+                                        <img src={contents.image}  alt=''/>
+                                    </Tablet>
+                                    <Pc>
+                                        <img src={contents.image}  alt=''/>
+                                        <BottomText>
+                                            <span>{contents.label}</span>
+                                        </BottomText>
+                                    </Pc>
+                                </BottomInner>
+                            </React.Fragment>
+                        ))}
+                    </BottomBox>
+                </NavBarLayout>
+                {/*<SubLayout>
+                    <div>
+                        <div>
+                            <div>
+                                <span>검색</span>
+                            </div>
+                        </div>
+                    </div>
+                </SubLayout>
+                */}
             </NavbarContainer>
         </>
     );
