@@ -1,4 +1,5 @@
 import App from "../App";
+import MainFeed from "../pages/main";
 import Index from "../pages/member/login/index";
 import Register from "../pages/member/register/index";
 
@@ -10,6 +11,7 @@ export const router = createBrowserRouter([
         element: <App />,
         children: [
             {
+                index: true,
                 path: 'member/login',
                 element: <Index />,
             },
@@ -17,6 +19,11 @@ export const router = createBrowserRouter([
                 path: 'member/register',
                 element: <Register />,
             },
+            {
+                path: 'main',
+                element: <MainFeed />,
+            },
+        
         ]
     },
 
