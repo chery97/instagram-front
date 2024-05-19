@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link } from 'react-router-dom';
 
 const Main = styled.main``;
 
@@ -120,6 +121,66 @@ const Text = styled.div``;
 
 const Recommend = styled.div`
     width: 320px;
+    font-size: 14px;
+`;
+
+const ProfileBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > div {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        > a:not(:last-child) {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .profileLink {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 3px;
+
+            span {
+                color: #737373;
+            }
+        }
+    }
+
+    button {
+        font-size: 12px;
+        font-weight: 700;
+        color: #0095f6;
+    }
+`;
+
+const RecommendProfile = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+`;
+
+const RecommendText = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+        font-weight: 700;
+        color: #737373;
+    }
+
+    a > span {
+        font-size: 12px;
+        color: #000;
+    }
 `;
 
 export const MainFeedStyled = {
@@ -148,4 +209,7 @@ export const MainFeedStyled = {
     Post,
     Text,
     Recommend,
+    ProfileBox,
+    RecommendProfile,
+    RecommendText,
 };

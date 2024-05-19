@@ -14,7 +14,7 @@ const MainFeed = () => {
         return {
             modules: [Navigation],
             slidesPerView: 8,
-            spaceBetween: 20,
+            spaceBetween: 15,
             navigation: {
                 prevEl: '.swiper-button-prev-event',
                 nextEl: '.swiper-button-next-event',
@@ -36,7 +36,7 @@ const MainFeed = () => {
     return (
         <S.Main>
             <S.Inner>
-                {/* <nav style={{ width: '245px' }}>navBar componenets</nav> */}
+                <nav style={{ width: '245px' }}>navBar componenets</nav>
                 <S.Contents>
                     <S.MainContents>
                         <S.StorySection>
@@ -260,7 +260,103 @@ const MainFeed = () => {
                             </S.Feed>
                         </S.FeedSection>
                     </S.MainContents>
-                    {/* {!isMobileSize && <S.Recommend>recommend</S.Recommend>} */}
+                    {!isMobileSize && (
+                        <S.Recommend>
+                            <S.ProfileBox>
+                                <div>
+                                    <a
+                                        href='/'
+                                        style={{
+                                            height: '44px',
+                                            width: '44px',
+                                        }}
+                                    >
+                                        <img
+                                            src='https://picsum.photos/id/237/500/500'
+                                            alt=''
+                                        />
+                                    </a>
+                                    <a className='profileLink' href='/'>
+                                        ynfloral__5
+                                        <span>오젼</span>
+                                    </a>
+                                </div>
+                                <button>전환</button>
+                            </S.ProfileBox>
+                            <S.RecommendProfile>
+                                <S.RecommendText>
+                                    <span>회원님을 위한 추천</span>
+                                    <a href='/'>
+                                        <span>모두 보기</span>
+                                    </a>
+                                </S.RecommendText>
+                                <S.ProfileBox>
+                                    <div>
+                                        <a
+                                            href='/'
+                                            style={{
+                                                height: '44px',
+                                                width: '44px',
+                                            }}
+                                        >
+                                            <img
+                                                src='https://picsum.photos/id/237/500/500'
+                                                alt=''
+                                            />
+                                        </a>
+                                        <a className='profileLink' href='/'>
+                                            ynfloral__5
+                                            <span>오젼</span>
+                                        </a>
+                                    </div>
+                                    <button>전환</button>
+                                </S.ProfileBox>
+                                <S.ProfileBox>
+                                    <div>
+                                        <a
+                                            href='/'
+                                            style={{
+                                                height: '44px',
+                                                width: '44px',
+                                            }}
+                                        >
+                                            <img
+                                                src='https://picsum.photos/id/237/500/500'
+                                                alt=''
+                                            />
+                                        </a>
+                                        <a className='profileLink' href='/'>
+                                            ynfloral__5
+                                            <span>오젼</span>
+                                        </a>
+                                    </div>
+                                    <button>전환</button>
+                                </S.ProfileBox>
+
+                                <S.ProfileBox>
+                                    <div>
+                                        <a
+                                            href='/'
+                                            style={{
+                                                height: '44px',
+                                                width: '44px',
+                                            }}
+                                        >
+                                            <img
+                                                src='https://picsum.photos/id/237/500/500'
+                                                alt=''
+                                            />
+                                        </a>
+                                        <a className='profileLink' href='/'>
+                                            ynfloral__5
+                                            <span>오젼</span>
+                                        </a>
+                                    </div>
+                                    <button>전환</button>
+                                </S.ProfileBox>
+                            </S.RecommendProfile>
+                        </S.Recommend>
+                    )}
                 </S.Contents>
             </S.Inner>
         </S.Main>
