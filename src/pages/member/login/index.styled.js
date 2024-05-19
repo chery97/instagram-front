@@ -94,19 +94,27 @@ const Divider = styled.div`
 `;
 
 const DividerText = styled.p`
-  margin: 0 18px;
+  position: relative;
   font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  &:before, &:after {
+  &:before {
     content: "";
     background-color: rgb(219, 219, 219);
-    width: 200px;
+    width: 110px;
     height: 1px;
     position: absolute;
-    padding: 0 10px;
+    left: 0;
+  } 
+  &:after {
+      content: "";
+      background-color: rgb(219, 219, 219);
+      width: 110px;
+      height: 1px;
+      position: absolute;
+      right: 0;
   }
 `;
 
