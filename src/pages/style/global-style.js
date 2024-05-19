@@ -114,4 +114,9 @@ export const GlobalStyle = createGlobalStyle`
         font-family: Pretendard, -apple-system, BlinkMacSystemFont, helvetica,
             Apple SD Gothic Neo, sans-serif;
     }
+
+    img{
+        display: block;
+        max-width: 100%;
+    }
 `;
