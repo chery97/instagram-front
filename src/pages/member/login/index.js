@@ -1,6 +1,7 @@
 import { LoginStyle as S } from "./index.styled";
 import Navbar from "../../../components/navbar";
 import { Pc, Tablet } from "../../../hooks/useDevice";
+import {Link} from "react-router-dom";
 
 const Login = () => {
     return (
@@ -41,7 +42,7 @@ const Login = () => {
                 <S.JoinBox>
                     <S.JoinText>
                         계정이 없으신가요?
-                        <a>가입하기</a>
+                        <a href='../member/register'>가입하기</a>
                     </S.JoinText>
                 </S.JoinBox>
                 <S.AppIntroduceBox>
@@ -49,12 +50,12 @@ const Login = () => {
                         <S.AppText>앱을 다운로드하세요.</S.AppText>
                     </S.AppTextBox>
                     <S.AppIconBox>
-                        <a href="https://apps.apple.com/app/instagram/id389801252?ct=igweb.loginPage.badge&mt=8&pt=428156&vt=lo" target="_blank">
+                        <Link to={"https://apps.apple.com/app/instagram/id389801252?ct=igweb.loginPage.badge&mt=8&pt=428156&vt=lo"} target="_blank">
                             <img src="https://static.cdninstagram.com/rsrc.php/v3/yi/r/cWx_hQBPmbo.png"/>
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D16A57D8B-213A-4302-B144-D31EF57E3E0D%26utm_campaign%3DloginPage%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge" target="_blank">
+                        </Link>
+                        <Link to={"https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D16A57D8B-213A-4302-B144-D31EF57E3E0D%26utm_campaign%3DloginPage%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge"} target="_blank">
                             <img src="https://static.cdninstagram.com/rsrc.php/v3/ye/r/UtJtFmFLCiD.png"/>
-                        </a>
+                        </Link>
                     </S.AppIconBox>
                 </S.AppIntroduceBox>
             </S.RightContainer>
