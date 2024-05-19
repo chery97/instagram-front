@@ -15,12 +15,13 @@ import More from "../../asset/icons/nav-bar-more.svg";
 import {Link} from "react-router-dom";
 
 const NavbarContainer = styled.div`
-  width: 244px;
-  height: 100vh;
-  display: flex;
-  position: relative;
-  background-color: black;
-  ${mediaQueries.mobile} {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    width: 244px;
+    height: 100vh;
+    background-color: black;
+    ${mediaQueries.mobile} {
     font-size: 16px;
   }
   ${mediaQueries.tablet} {
