@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link } from 'react-router-dom';
 
 const Main = styled.main``;
 
@@ -121,6 +120,7 @@ const Text = styled.div``;
 
 const Recommend = styled.div`
     width: 320px;
+    padding: 20px 0;
     font-size: 14px;
 `;
 
