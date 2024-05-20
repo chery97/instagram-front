@@ -179,6 +179,7 @@ const JoinBox = styled.div`
 `;
 
 const JoinText = styled.p`
+  display: flex;
   font-size: 14px;
   font-weight: 600;
   padding: 10px 0;
@@ -186,6 +187,7 @@ const JoinText = styled.p`
     color: #0095F6;
     font-weight: bold;
     cursor: pointer;
+    padding-left: 3px;  
   }
 `;
 
