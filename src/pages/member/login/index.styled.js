@@ -7,8 +7,9 @@ const Layout = styled.div`
 `;
 
 const Left = styled.div`
-  width: 468px;
+  position: relative;
   display: flex;
+  width: 468px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -16,8 +17,10 @@ const Left = styled.div`
 
 const LeftImgBox = styled.div`
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 538.84px;
+  left: 156px;
+  top: 356px;
 `;
 
 const RightContainer = styled.div`
