@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import { isMobile } from '../../utils/mediaQueries';
+import Navbar from '../../components/navbar';
 
 const MainFeed = () => {
     const isMobileSize = isMobile();
@@ -36,7 +37,7 @@ const MainFeed = () => {
     return (
         <S.Main>
             <S.Inner>
-                <nav style={{ width: '245px' }}>navBar componenets</nav>
+                <Navbar />
                 <S.Contents>
                     <S.MainContents>
                         <S.StorySection>
