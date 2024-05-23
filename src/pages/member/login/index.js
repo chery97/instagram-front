@@ -1,6 +1,6 @@
 import { LoginStyle as S } from "./index.styled";
 import Navbar from "../../../components/navbar";
-import { Pc, Tablet } from "../../../hooks/useDevice";
+import { mediaQueries, Pc, Tablet } from "../../../hooks/useDevice";
 import {Link} from "react-router-dom";
 import Insta1 from "../../../asset/images/insta-main-1.png"
 import Insta2 from "../../../asset/images/insta-main-2.png"
@@ -21,14 +21,14 @@ const Login = () => {
     return (
         <S.Layout>
             <Pc>
-                {/*<Navbar/>*/}
                 <S.Left>
-                    <img src={Phones} alt='phones'/>
+                <S.Img>
                     <S.LeftImgBox>
                         <Swiper
                             speed={2000}
                             spaceBetween={30}
                             effect={'fade'}
+                            allowTouchMove={false}
                             centeredSlides={true}
                             navigation={false}
                             autoplay={{
@@ -53,41 +53,43 @@ const Login = () => {
                             </SwiperSlide>
                         </Swiper>
                     </S.LeftImgBox>
-                </S.Left>
+                </S.Img>
+            </S.Left>
             </Pc>
             <Tablet>
-                {/*<Navbar/>*/}
                 <S.Left>
-                    <img src={Phones} alt='phones'/>
-                    <S.LeftImgBox>
-                        <Swiper
-                            speed={2000}
-                            spaceBetween={30}
-                            effect={'fade'}
-                            centeredSlides={true}
-                            navigation={false}
-                            autoplay={{
-                                delay: 2500,
-                                disableOnInteraction: false,
-                            }}
-                            loop={true}
-                            modules={[Autoplay, EffectFade, Navigation, Pagination]}
-                            className="instaMain"
-                        >
-                            <SwiperSlide>
-                                <img src={Insta1} alt='insta-1' />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={Insta2} alt='insta-2' />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={Insta3} alt='insta-3' />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src={Insta4} alt='insta-4' />
-                            </SwiperSlide>
-                        </Swiper>
-                    </S.LeftImgBox>
+                    <S.Img>
+                        <S.LeftImgBox>
+                            <Swiper
+                                speed={2000}
+                                spaceBetween={30}
+                                effect={'fade'}
+                                allowTouchMove={false}
+                                centeredSlides={true}
+                                navigation={false}
+                                autoplay={{
+                                    delay: 2500,
+                                    disableOnInteraction: false,
+                                }}
+                                loop={true}
+                                modules={[Autoplay, EffectFade, Navigation, Pagination]}
+                                className="instaMain"
+                            >
+                                <SwiperSlide>
+                                    <img src={Insta1} alt='insta-1' />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <img src={Insta2} alt='insta-2' />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <img src={Insta3} alt='insta-3' />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <img src={Insta4} alt='insta-4' />
+                                </SwiperSlide>
+                            </Swiper>
+                        </S.LeftImgBox>
+                    </S.Img>
                 </S.Left>
             </Tablet>
             <S.RightContainer>
