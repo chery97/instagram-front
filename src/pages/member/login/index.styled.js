@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Phones from "../../../asset/images/insta-main-phones.png"
 
 const Layout = styled.div`
   height: 100vh;
@@ -15,12 +16,23 @@ const Left = styled.div`
   align-items: center;
 `;
 
+const Img = styled.div`
+    position: relative;
+    width: 380px;
+    height: 580px;
+  background-image: url(${Phones});
+    background-position: top;
+`;
+
 const LeftImgBox = styled.div`
   position: absolute;
   width: 250px;
   height: 538.84px;
-  left: 156px;
-  top: 356px;
+  //left: 156px;
+  //top: 356px;
+    right: 17px;
+    bottom: 14px;
+    
 `;
 
 const RightContainer = styled.div`
@@ -229,6 +241,7 @@ const AppIconBox = styled.div`
 export const LoginStyle = {
     Layout,
     Left,
+    Img,
     LeftImgBox,
     RightContainer,
     RightLoginForm,
