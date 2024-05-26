@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 
 import { MainFeedStyled as S } from './index.styled';
@@ -8,6 +8,10 @@ import Navbar from '../../components/navbar';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import Alert from '../../asset/icons/nav-bar-alert.svg';
+import Message from '../../asset/icons/nav-bar-message.svg';
+import Modal from '../../components/Modal';
+import FeedServiceModal from '../../components/Modal/FeedServiceModal';
 
 const MainFeed = () => {
     const isMobileSize = isMobile();
@@ -100,8 +104,17 @@ const MainFeed = () => {
         },
     ];
 
+    const [isVisibleModal, setIsVisibleModal] = useState(false);
+
     return (
         <S.Main>
+            {isVisibleModal ? (
+                <>
+                    <FeedServiceModal />
+                </>
+            ) : (
+                <></>
+            )}
             <S.Inner>
                 <Navbar />
                 <S.Contents>
@@ -168,9 +181,27 @@ const MainFeed = () => {
                                             </S.Photo>
                                             <S.ActionIcon>
                                                 <div>
-                                                    <S.Like>좋아요</S.Like>
-                                                    <S.Reply>댓글</S.Reply>
-                                                    <S.Share>공유</S.Share>
+                                                    <S.Like>
+                                                        <img
+                                                            src={Alert}
+                                                            alt='likeIcon'
+                                                        />
+                                                    </S.Like>
+                                                    <S.Reply
+                                                        onClick={() =>
+                                                            setIsVisibleModal(
+                                                                true,
+                                                            )
+                                                        }
+                                                    >
+                                                        댓글
+                                                    </S.Reply>
+                                                    <S.Share>
+                                                        <img
+                                                            src={Message}
+                                                            alt='shareIcon'
+                                                        />
+                                                    </S.Share>
                                                 </div>
                                                 <S.BookMark>저장</S.BookMark>
                                             </S.ActionIcon>
