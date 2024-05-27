@@ -1,5 +1,6 @@
 import React from "react";
 import { RegisterStyle as S } from "./index.styled";
+import FeedView from "../../../components/feedview";
 
 const Register = () => {
 
@@ -101,17 +102,12 @@ const Register = () => {
                     </S.AppDownBox>
                 </S.DownBox>
           </S.Inner>
-      </S.Main>
-      );
+          <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <FeedView/>
+          </div>
+        </S.Main>
+    );
 };
-
-
-
-
-
-
-
-
 
 
 export default Register;
