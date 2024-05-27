@@ -116,7 +116,7 @@ const FeedView = () => {
                                             <S.CommentInfo>
                                                 <S.ProfileCont>
                                                     <S.ProfileName>
-                                                        <span>{contents.profile}</span>
+                                                        {contents.profile}
                                                     </S.ProfileName>
                                                     <S.Comment>{contents.comment}</S.Comment>
                                                 </S.ProfileCont>

@@ -75,15 +75,15 @@ const ProfileImage = styled(Link)`
 `;
 
 const ProfileCont = styled.div`
-    display: flex;
-    align-items: center;
+    text-align: left;
     margin-left: 14px;
     color: white;
     font-size: 14px;
     font-weight: bold;
+    word-break: break-all;
 `;
 
-const ProfileName = styled.h3`
+const ProfileName = styled.span`
    
 `;
 
@@ -139,6 +139,7 @@ const CommentInfo = styled.div`
 
 const Like = styled.div`
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     margin-left: 10px;
@@ -158,7 +159,7 @@ const CommentFuncBox = styled.div`
     }
 `;
 
-const Comment = styled.h2`
+const Comment = styled.span`
     margin-left: 4px;
     display: inline !important;
 `;
