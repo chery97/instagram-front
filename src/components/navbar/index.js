@@ -266,28 +266,44 @@ const Navbar = () => {
     })
 
     const [isSubLayoutVisible,setIsSubLayoutVisible] = useState('');
+    const [isSubLayoutOpened,setIsSubLayoutOpened] = useState(false);
     const [isInputType,setIsInputType] = useState(false);
 
-    const element = useRef(null);
-    const useSlideIn = () => {
-        useEffect(() => {
-            const clickFocus = (e) => {
-                // 검색창 요소 이외의 영역 클릭 시 검색창 비노출 되도록 value 빈 값으로 셋팅
-                if (element.current && !element.current.contains(e.target)) {
-                    setIsSubLayoutVisible('');
-                }
+    const slideIn1 = (id) => {
+        if (id === 'Search') {
+            if (!isSubLayoutOpened) {
+                setIsSubLayoutVisible(id);
+                setIsSubLayoutOpened(true);
+            } else {
+                setIsSubLayoutVisible('');
+                setIsSubLayoutOpened(false);
             }
-            // 이벤트 리스너에 clickFocus 함수 등록
-            document.addEventListener("mouseup", clickFocus);
-
-            return () => {
-                // 끝나면 리스너 삭제
-                document.removeEventListener("mouseup", clickFocus);
-            }
-        }, [isSubLayoutVisible]);
-        return { ref: element, style: { opacity: 1 } };
+        } else {
+            setIsSubLayoutVisible('');
+            setIsSubLayoutOpened(false);
+        }
     }
-    const openSubLayout = useSlideIn();
+
+    // const element = useRef(null);
+    // const useSlideIn = () => {
+    //     useEffect(() => {
+    //         const clickFocus = (e) => {
+    //             // 검색창 요소 이외의 영역 클릭 시 검색창 비노출 되도록 value 빈 값으로 셋팅
+    //             if (element.current && !element.current.contains(e.target)) {
+    //                 setIsSubLayoutVisible('');
+    //             }
+    //         }
+    //         // 이벤트 리스너에 clickFocus 함수 등록
+    //         document.addEventListener("mouseup", clickFocus);
+    //
+    //         return () => {
+    //             // 끝나면 리스너 삭제
+    //             document.removeEventListener("mouseup", clickFocus);
+    //         }
+    //     }, [isSubLayoutVisible]);
+    //     return { ref: element, style: { opacity: 1 } };
+    // }
+    // const openSubLayout = useSlideIn();
 
     return (
         <>
@@ -314,7 +330,7 @@ const Navbar = () => {
                     <MiddleBox>
                         {mainContents.map((contents, index) => (
                             <React.Fragment key={index}>
-                                <MiddleInner onClick={() => setIsSubLayoutVisible(contents.id)}>
+                                <MiddleInner onClick={() => slideIn1(contents.id)}>
                                     <Tablet>
                                         <img src={contents.image}  alt=''/>
                                     </Tablet>
@@ -355,7 +371,7 @@ const Navbar = () => {
                     </BottomBox>
                 </NavBarLayout>
                 {isSubLayoutVisible === 'Search' ? (
-                    <SubLayout {...openSubLayout} ref={ element }>
+                    <SubLayout >
                         <SubLayoutInner>
                             <SubLayoutTop>
                                 <div>
