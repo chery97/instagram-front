@@ -23,6 +23,7 @@ const NavbarContainer = styled.div`
     background-color: black;
     ${mediaQueries.mobile} {
     font-size: 16px;
+    z-index: 3;
   }
   ${mediaQueries.tablet} {
     font-size: 16px;
@@ -121,10 +122,16 @@ const SubLayout = styled.div`
   width: 397px;
   height: 100vh;
   bottom: 0;
-  left: 80px;
+  left: -430px;
   position: absolute;
   background-color: black;
+    transition: 0.5s ease;  
+    &.open {
+        left: 80px;
+        transition: 0.5s ease;
+    }
   animation: ${() => slideInAnimation} 0.3s ease-in-out forwards;
+  z-index: 2;
   img, span {
     filter: invert(100%);
   }
@@ -269,7 +276,7 @@ const Navbar = () => {
     const [isSubLayoutOpened,setIsSubLayoutOpened] = useState(false);
     const [isInputType,setIsInputType] = useState(false);
 
-    const slideIn1 = (id) => {
+    const slideIn = (id) => {
         if (id === 'Search') {
             if (!isSubLayoutOpened) {
                 setIsSubLayoutVisible(id);
@@ -321,8 +328,11 @@ const Navbar = () => {
                             </Pc>
                             <Tablet>
                                 <img src={
-                                    isSubLayoutVisible !== 'Search' ?
-                                        Logo1 : Logo
+                                    isSubLayoutVisible !== 'Search'
+                                        ?
+                                        Logo1
+                                        :
+                                        Logo1
                                 } alt=''/>
                             </Tablet>
                         </LogoInner>
@@ -330,7 +340,7 @@ const Navbar = () => {
                     <MiddleBox>
                         {mainContents.map((contents, index) => (
                             <React.Fragment key={index}>
-                                <MiddleInner onClick={() => slideIn1(contents.id)}>
+                                <MiddleInner onClick={() => slideIn(contents.id)}>
                                     <Tablet>
                                         <img src={contents.image}  alt=''/>
                                     </Tablet>
@@ -370,40 +380,44 @@ const Navbar = () => {
                         ))}
                     </BottomBox>
                 </NavBarLayout>
-                {isSubLayoutVisible === 'Search' ? (
-                    <SubLayout >
-                        <SubLayoutInner>
-                            <SubLayoutTop>
-                                <div>
-                                    <span>검색</span>
-                                </div>
-                            </SubLayoutTop>
-                            <SubLayoutBottom>
-                                <SubLayoutSearchBox>
-                                    <SubLayoutSearchBoxInner>
-                                        {!isInputType
-                                            ?
-                                            <SearchBoxCont onClick={() => setIsInputType(true)}>
-                                                <img src={Search} alt=''/>
-                                                <span>검색</span>
-                                            </SearchBoxCont>
-                                            :
-                                            <SearchBoxInputCont>
-                                                <input type='text' placeholder='검색' />
-                                                <SearchBoxContDeleteBtn />
-                                            </SearchBoxInputCont>
-                                        }
-                                    </SubLayoutSearchBoxInner>
-                                </SubLayoutSearchBox>
-                                <Divide />
-                                <ResultBox>
-                                    <ResultBoxTitle>최근 검색 항목</ResultBoxTitle>
-                                </ResultBox>
-                            </SubLayoutBottom>
-                        </SubLayoutInner>
-                    </SubLayout>
-                    ) : null
-                }
+                <SubLayout className={
+                    `${isSubLayoutOpened 
+                        ? 
+                        'open' 
+                        : 
+                        ''}
+                    `}
+                >
+                    <SubLayoutInner>
+                        <SubLayoutTop>
+                            <div>
+                                <span>검색</span>
+                            </div>
+                        </SubLayoutTop>
+                        <SubLayoutBottom>
+                            <SubLayoutSearchBox>
+                                <SubLayoutSearchBoxInner>
+                                    {!isInputType
+                                        ?
+                                        <SearchBoxCont onClick={() => setIsInputType(true)}>
+                                            <img src={Search} alt=''/>
+                                            <span>검색</span>
+                                        </SearchBoxCont>
+                                        :
+                                        <SearchBoxInputCont>
+                                            <input type='text' placeholder='검색' />
+                                            <SearchBoxContDeleteBtn />
+                                        </SearchBoxInputCont>
+                                    }
+                                </SubLayoutSearchBoxInner>
+                            </SubLayoutSearchBox>
+                            <Divide />
+                            <ResultBox>
+                                <ResultBoxTitle>최근 검색 항목</ResultBoxTitle>
+                            </ResultBox>
+                        </SubLayoutBottom>
+                    </SubLayoutInner>
+                </SubLayout>
             </NavbarContainer>
         </>
     );
