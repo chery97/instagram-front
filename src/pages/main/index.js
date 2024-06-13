@@ -1,16 +1,15 @@
-import React, { useMemo, useState } from 'react';
 import dayjs from 'dayjs';
+import React, { useMemo, useState } from 'react';
 
-import { MainFeedStyled as S } from './index.styled';
-import { isMobile } from '../../utils/mediaQueries';
 import Navbar from '../../components/navbar';
+import { isMobile } from '../../utils/mediaQueries';
+import { MainFeedStyled as S } from './index.styled';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import Alert from '../../asset/icons/nav-bar-alert.svg';
 import Message from '../../asset/icons/nav-bar-message.svg';
-import Modal from '../../components/Modal';
 import FeedServiceModal from '../../components/Modal/FeedServiceModal';
 
 const MainFeed = () => {
@@ -110,7 +109,9 @@ const MainFeed = () => {
         <S.Main>
             {isVisibleModal ? (
                 <>
-                    <FeedServiceModal />
+                    <FeedServiceModal
+                        onClose={() => setIsVisibleModal(false)}
+                    />
                 </>
             ) : (
                 <></>
@@ -154,7 +155,13 @@ const MainFeed = () => {
                                                     <S.Name>{item.name}</S.Name>
                                                     <S.Time>{item.time}</S.Time>
                                                 </div>
-                                                <S.AddButton>...</S.AddButton>
+                                                <S.AddButton
+                                                    onClick={() =>
+                                                        setIsVisibleModal(true)
+                                                    }
+                                                >
+                                                    ...
+                                                </S.AddButton>
                                             </S.Header>
                                             <S.Photo>
                                                 <S.SwiperWrap {...SettingsFeed}>
@@ -187,15 +194,7 @@ const MainFeed = () => {
                                                             alt='likeIcon'
                                                         />
                                                     </S.Like>
-                                                    <S.Reply
-                                                        onClick={() =>
-                                                            setIsVisibleModal(
-                                                                true,
-                                                            )
-                                                        }
-                                                    >
-                                                        댓글
-                                                    </S.Reply>
+                                                    <S.Reply>댓글</S.Reply>
                                                     <S.Share>
                                                         <img
                                                             src={Message}

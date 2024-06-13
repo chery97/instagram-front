@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Modal from '..';
 
-const FeedServiceModal = () => {
+const FeedServiceModal = ({ onClose }) => {
     const serviceList = [
         {
             title: '신고',
@@ -39,10 +39,6 @@ const FeedServiceModal = () => {
             title: '이 계정 정보',
             path: '',
         },
-        {
-            title: '취소',
-            path: '',
-        },
     ];
 
     return (
@@ -51,6 +47,7 @@ const FeedServiceModal = () => {
                 children={
                     <>
                         <div
+                            onClick={onClose}
                             style={{
                                 position: 'fixed',
                                 top: '0',
@@ -60,7 +57,6 @@ const FeedServiceModal = () => {
                                 background: 'rgba(0,0,0,.5)',
                                 zIndex: 10,
                             }}
-                            // onClose
                         ></div>
                         <div
                             style={{
@@ -92,10 +88,25 @@ const FeedServiceModal = () => {
                                                 color: item.color ?? '#000',
                                             }}
                                         >
-                                            <Link to='/'>{item.title}</Link>
+                                            <Link to={item.path}>
+                                                {item.title}
+                                            </Link>
                                         </li>
                                     );
                                 })}
+                                <li
+                                    style={{
+                                        height: 'calc(100% / 9)',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        fontSize: '14px',
+                                        fontWeight: '500',
+                                        color: '#000',
+                                    }}
+                                >
+                                    <button onClick={onClose}>취소</button>
+                                </li>
                             </ul>
                         </div>
                     </>
