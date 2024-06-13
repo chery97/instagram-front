@@ -98,9 +98,9 @@ const ActionIcon = styled.div`
         gap: 16px;
     }
 `;
-const Like = styled.div``;
-const Reply = styled.div``;
-const Share = styled.div``;
+const Like = styled.button``;
+const Reply = styled.button``;
+const Share = styled.button``;
 const BookMark = styled.div``;
 const LikePeople = styled.div`
     text-align: left;
