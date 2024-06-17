@@ -4,6 +4,7 @@ import Index from "../pages/member/login/index";
 import Register from "../pages/member/register/index";
 
 import { createBrowserRouter } from "react-router-dom";
+import ProfileView from "../pages/profile";
 
 export const router = createBrowserRouter([
     {
@@ -23,7 +24,10 @@ export const router = createBrowserRouter([
                 path: 'main',
                 element: <MainFeed />,
             },
-        
+            {
+                path: 'profile/:id',
+                element: <ProfileView />,
+            },
         ]
     },
 
