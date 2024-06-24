@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
                 element: <MainFeed />,
             },
             {
-                path: 'profile/:id',
+                path: 'profile/:memId',
                 element: <ProfileView />,
             },
         ]
