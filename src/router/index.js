@@ -27,6 +27,16 @@ export const router = createBrowserRouter([
             {
                 path: 'profile/:memId',
                 element: <ProfileView />,
+                children: [
+                    {
+                        path: 'reels',
+                        element: <ProfileView />,
+                    },
+                    {
+                        path: 'tagged',
+                        element: <ProfileView />,
+                    }
+                ],
             },
         ]
     },
