@@ -53,11 +53,57 @@ const FeedTabCont = styled(Link)`
     }
 `;
 
+const Feed = styled.div`
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+`;
+
+const FeedCont = styled.div`
+    position: relative;
+    display: flex;
+    width: calc(100% / 3.05);
+    height: 307.67px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+`;
+
+const ReelsFeed = styled.div`
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+`;
+
+const ReelsCont = styled.div`
+    position: relative;
+    display: flex;
+    width: calc(100% / 4.1);
+    height: 307.67px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+`;
+
 export const ProfileStyled = {
     Main,
     Inner,
     Contents,
     ProfileContents,
     FeedTab,
-    FeedTabCont
+    FeedTabCont,
+    Feed,
+    FeedCont,
+    ReelsFeed,
+    ReelsCont
 };
