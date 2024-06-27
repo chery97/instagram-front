@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Main = styled.main``;
 
@@ -20,6 +20,98 @@ const ProfileContents = styled.div`
     margin: 0 auto 30px auto;
 `;
 
+const DashBoard = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+`;
+const Profile = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 30px;
+`;
+const Highlight = styled.div``;
+const ImageBox = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 25px;
+    width: 210px;
+
+    img {
+        width: 150px;
+    }
+`;
+const Tooltip = styled.span`
+    position: absolute;
+    top: 0;
+    left: 30%;
+    padding: 15px 7px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #737373;
+`;
+const InfoBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`;
+const TopRow = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+`;
+const Name = styled.div`
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 500;
+`;
+const LinkTag = styled(Link)`
+    span {
+        padding: 9px 15px;
+        background: #efefef;
+        border-radius: 7px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+`;
+const Setting = styled.div``;
+const MiddleRow = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 40px;
+`;
+const Post = styled.div`
+    font-size: 16px;
+
+    strong {
+        font-weight: 700;
+    }
+`;
+const Follower = styled.div`
+    font-size: 16px;
+    cursor: pointer;
+
+    strong {
+        font-weight: 700;
+    }
+`;
+const Follow = styled.div`
+    font-size: 16px;
+    cursor: pointer;
+
+    strong {
+        font-weight: 700;
+    }
+`;
+const BottomRow = styled.div`
+    text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+`;
+
 const FeedTab = styled.div`
     display: flex;
     justify-content: center;
@@ -38,7 +130,7 @@ const FeedTabCont = styled(Link)`
     align-items: center;
     margin: -1px 60px 0 0;
     height: 52px;
-    color: #A8A8A8;
+    color: #a8a8a8;
     &:last-child {
         margin: 0;
     }
@@ -47,7 +139,7 @@ const FeedTabCont = styled(Link)`
         width: 12px;
         height: 12px;
     }
-    
+
     span {
         margin-left: 6px;
     }
@@ -67,7 +159,7 @@ const FeedCont = styled.div`
     height: 307.67px;
     margin-bottom: 4px;
     margin-right: 4px;
-    
+
     img {
         width: 100%;
         object-fit: cover;
@@ -88,7 +180,7 @@ const ReelsCont = styled.div`
     height: 307.67px;
     margin-bottom: 4px;
     margin-right: 4px;
-    
+
     img {
         width: 100%;
         object-fit: cover;
@@ -105,5 +197,20 @@ export const ProfileStyled = {
     Feed,
     FeedCont,
     ReelsFeed,
-    ReelsCont
+    ReelsCont,
+    DashBoard,
+    Profile,
+    Highlight,
+    ImageBox,
+    Tooltip,
+    InfoBox,
+    TopRow,
+    Name,
+    LinkTag,
+    Setting,
+    MiddleRow,
+    Post,
+    Follower,
+    Follow,
+    BottomRow,
 };
