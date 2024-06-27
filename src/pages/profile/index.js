@@ -101,14 +101,14 @@ const ProfileView = () => {
     };
     return (
         <S.Main>
-            {isVisibleFollowerModal ? (
+            {/* {isVisibleFollowerModal ? (
                 <FollowerModal
                     isOpen={isVisibleFollowerModal}
                     onClose={() => setIsVisibleFollowerModal(false)}
                 />
             ) : (
                 <></>
-            )}
+            )} */}
             {isVisibleFollowModal ? <FollowModal /> : <></>}
 
             <S.Inner>
