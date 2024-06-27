@@ -155,10 +155,14 @@ const Feed = styled.div`
 const FeedCont = styled.div`
     position: relative;
     display: flex;
-    width: calc(100% / 3.05);
+    width: calc((100% - 8px) / 3);
     height: 307.67px;
     margin-bottom: 4px;
     margin-right: 4px;
+
+    &:nth-child(3n) {
+        margin-right: 0px;
+    }
 
     img {
         width: 100%;
@@ -176,10 +180,14 @@ const ReelsFeed = styled.div`
 const ReelsCont = styled.div`
     position: relative;
     display: flex;
-    width: calc(100% / 4.1);
+    width: calc((100% - 12px) / 4);
     height: 307.67px;
     margin-bottom: 4px;
     margin-right: 4px;
+
+    &:nth-child(4n) {
+        margin-right: 0px;
+    }
 
     img {
         width: 100%;
