@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import commonIcon from '../../asset/icons/common-icon.png'
 
 const Main = styled.main``;
 
@@ -195,6 +196,61 @@ const ReelsCont = styled.div`
     }
 `;
 
+const ReelsFeedHover = styled.div`
+    position: absolute;
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+`;
+
+const ReelsFeedHoverBox = styled.ul`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    //&:hover {
+    //    background-color: rgba(0, 0, 0, 0.3);
+    //}
+    
+    li:nth-child(2n-1) {
+        margin-right: 30px;
+    }
+`;
+
+const HoverLikeIcon = styled.span`
+    width: 19px;
+    height: 19px;
+    background-image: url(${commonIcon});
+    background-position: -340px -333px;
+    
+    span {
+        font-size: 16px;
+        font-weight: 800;
+        color: white;
+    }
+`;
+
+const HoverCommentIcon = styled.span`
+    width: 19px;
+    height: 19px;
+    background-image: url(${commonIcon});
+    background-position: -382px -333px;
+
+    span {
+        font-size: 16px;
+        font-weight: 800;
+        color: white;
+    }
+`;
+
 export const ProfileStyled = {
     Main,
     Inner,
@@ -206,6 +262,10 @@ export const ProfileStyled = {
     FeedCont,
     ReelsFeed,
     ReelsCont,
+    ReelsFeedHover,
+    ReelsFeedHoverBox,
+    HoverLikeIcon,
+    HoverCommentIcon,
     DashBoard,
     Profile,
     Highlight,

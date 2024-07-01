@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useRef, useState} from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import article from '../../asset/icons/profile/article.svg';
 import reels from '../../asset/icons/profile/reels.svg';
@@ -51,6 +51,7 @@ const ProfileView = () => {
 
     const [isVisibleFollowerModal, setIsVisibleFollowerModal] = useState(false);
     const [isVisibleFollowModal, setIsVisibleFollowModal] = useState(false);
+    const [isHover, setIsHover] = useState(false);
 
     let feedCont;
     if (pathSegments.length === 3) {
@@ -99,6 +100,11 @@ const ProfileView = () => {
     const onFollowerModalOpen = () => {
         setIsVisibleFollowerModal(true);
     };
+
+    const isFeedHover = (key) => {
+        setIsHover(true);
+    };
+    const hoverRef = useRef({});
     return (
         <S.Main>
             {/* {isVisibleFollowerModal ? (
@@ -193,9 +199,31 @@ const ProfileView = () => {
                         </S.FeedTab>
                         {lastSegment === 'reels' ? (
                             <S.ReelsFeed>
-                                {feedCont.map((cont) => (
-                                    <S.ReelsCont key={cont.sno}>
+                                {feedCont.map((cont, key) => (
+                                    <S.ReelsCont
+                                        key={cont.sno}
+                                    >
                                         <img src={cont.image} />
+                                        <S.ReelsFeedHover
+                                            key={key}
+                                            onMouseEnter={() => isFeedHover(key)}
+                                            onMouseLeave={() => setIsHover(false)}
+                                            ref={(element) => hoverRef.current[key] = element}
+                                            $ishover={isHover.toString()}
+                                        >
+                                            <S.ReelsFeedHoverBox>
+                                                <li>
+                                                    <S.HoverLikeIcon>
+                                                        <span>{cont.likeCnt}</span>
+                                                    </S.HoverLikeIcon>
+                                                </li>
+                                                <li>
+                                                    <S.HoverCommentIcon>
+                                                        <span>{cont.commentCnt}</span>
+                                                    </S.HoverCommentIcon>
+                                                </li>
+                                            </S.ReelsFeedHoverBox>
+                                        </S.ReelsFeedHover>
                                     </S.ReelsCont>
                                 ))}
                             </S.ReelsFeed>
