@@ -15,7 +15,7 @@ import More from "../../asset/icons/nav-bar-more.svg";
 import {Link} from "react-router-dom";
 
 const NavbarContainer = styled.div`
-    position: relative;
+    position: fixed;
     display: flex;
     flex-shrink: 0;
     width: 244px;
