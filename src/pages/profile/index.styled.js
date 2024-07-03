@@ -13,6 +13,19 @@ const Contents = styled.div`
     width: 100%;
 `;
 
+const ContentsInner = styled.div`
+    float: right;
+    @media (min-width:1160px) {
+        width: calc(100% - 244px);
+    }
+    @media (min-width:768px) and (max-width:1159px) {
+        width: calc(100% - 72px);
+    }
+    @media (max-width:767px) {
+        width: calc(100% - 50px);
+    }
+`;
+
 const ProfileContents = styled.div`
     width: calc(100% - 40px);
     max-width: 935px;
@@ -172,6 +185,7 @@ const FeedCont = styled.div`
 
     &:hover div {
         display: flex;
+        cursor: pointer;
     }
 `;
 
@@ -201,6 +215,7 @@ const ReelsCont = styled.div`
 
     &:hover div {
         display: flex;
+        cursor: pointer;
     }
 `;
 
@@ -296,6 +311,7 @@ export const ProfileStyled = {
     Main,
     Inner,
     Contents,
+    ContentsInner,
     ProfileContents,
     FeedTab,
     FeedTabCont,

@@ -64,6 +64,9 @@ const ProfileView = () => {
             { sno: 7, likeCnt: '2100', commentCnt: '46', image: feed7 },
             { sno: 8, likeCnt: '3755', commentCnt: '36', image: feed8 },
             { sno: 9, likeCnt: '1052', commentCnt: '25', image: feed9 },
+            { sno: 10, likeCnt: '934', commentCnt: '11', image: feed4 },
+            { sno: 11, likeCnt: '2596', commentCnt: '41', image: feed6 },
+            { sno: 12, likeCnt: '3755', commentCnt: '36', image: feed8 },
         ];
     }
 
@@ -115,7 +118,8 @@ const ProfileView = () => {
             <S.Inner>
                 <Navbar />
                 <S.Contents>
-                    <S.ProfileContents>
+                    <S.ContentsInner>
+                        <S.ProfileContents>
                         {/* joy님 해주세요 */}
                         <S.DashBoard>
                             <S.Profile>
@@ -250,6 +254,7 @@ const ProfileView = () => {
                             </S.Feed>
                         )}
                     </S.ProfileContents>
+                    </S.ContentsInner>
                 </S.Contents>
             </S.Inner>
         </S.Main>
