@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { Link } from 'react-router-dom';
 import commonIcon from '../../asset/icons/common-icon.png'
 
@@ -169,6 +169,10 @@ const FeedCont = styled.div`
         width: 100%;
         object-fit: cover;
     }
+
+    &:hover div {
+        display: flex;
+    }
 `;
 
 const ReelsFeed = styled.div`
@@ -194,12 +198,15 @@ const ReelsCont = styled.div`
         width: 100%;
         object-fit: cover;
     }
+
+    &:hover div {
+        display: flex;
+    }
 `;
 
 const ReelsFeedHover = styled.div`
     position: absolute;
-    display: flex;
-    
+    display: none;
     align-items: center;
     justify-content: center;
     left: 0;
@@ -215,39 +222,73 @@ const ReelsFeedHoverBox = styled.ul`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
+    
+    li:nth-child(2n-1) {
+        margin-right: 20px;
+    }
+`;
 
-    //&:hover {
-    //    background-color: rgba(0, 0, 0, 0.3);
-    //}
+const FeedHover = styled.div`
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+`;
+
+const FeedHoverBox = styled.ul`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
     
     li:nth-child(2n-1) {
         margin-right: 30px;
     }
 `;
 
-const HoverLikeIcon = styled.span`
-    width: 19px;
-    height: 19px;
-    background-image: url(${commonIcon});
-    background-position: -340px -333px;
+const HoverLikeIcon = styled.div`
+    display: flex;
     
     span {
+        justify-content: center;
+        align-items: center;
         font-size: 16px;
         font-weight: 800;
         color: white;
     }
+
+    span:nth-child(2n-1) {
+        width: 21px;
+        height: 21px;
+        margin: 2px 7px 0 0;
+        background-image: url(${commonIcon});
+        background-position: -340px -333px;
+    }
 `;
 
-const HoverCommentIcon = styled.span`
-    width: 19px;
-    height: 19px;
-    background-image: url(${commonIcon});
-    background-position: -382px -333px;
-
+const HoverCommentIcon = styled.div`
+    display: flex;
+    
     span {
+        justify-content: center;
+        align-items: center;
         font-size: 16px;
         font-weight: 800;
         color: white;
+    }
+
+    span:nth-child(2n-1) {
+        width: 21px;
+        height: 21px;
+        margin: 2px 7px 0 0;
+        background-image: url(${commonIcon});
+        background-position: -382px -333px;
     }
 `;
 
@@ -264,6 +305,8 @@ export const ProfileStyled = {
     ReelsCont,
     ReelsFeedHover,
     ReelsFeedHoverBox,
+    FeedHover,
+    FeedHoverBox,
     HoverLikeIcon,
     HoverCommentIcon,
     DashBoard,

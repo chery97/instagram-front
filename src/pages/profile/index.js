@@ -51,7 +51,6 @@ const ProfileView = () => {
 
     const [isVisibleFollowerModal, setIsVisibleFollowerModal] = useState(false);
     const [isVisibleFollowModal, setIsVisibleFollowModal] = useState(false);
-    const [isHover, setIsHover] = useState(false);
 
     let feedCont;
     if (pathSegments.length === 3) {
@@ -71,13 +70,13 @@ const ProfileView = () => {
     if (lastSegment === 'tagged') {
         feedCont = [
             { sno: 1, likeCnt: '244.4만', commentCnt: '6305', image: feed1 },
-            { sno: 2, likeCnt: '121.5만', commentCnt: '3596', image: feed2 },
-            { sno: 3, likeCnt: '17.6만', commentCnt: '487', image: feed3 },
+            { sno: 2, likeCnt: '17.6만', commentCnt: '487', image: feed3 },
+            { sno: 3, likeCnt: '121.5만', commentCnt: '3596', image: feed2 },
             { sno: 4, likeCnt: '934', commentCnt: '11', image: feed4 },
-            { sno: 5, likeCnt: '2867', commentCnt: '43', image: feed5 },
-            { sno: 6, likeCnt: '2596', commentCnt: '41', image: feed6 },
-            { sno: 7, likeCnt: '2100', commentCnt: '46', image: feed7 },
-            { sno: 8, likeCnt: '3755', commentCnt: '36', image: feed8 },
+            { sno: 5, likeCnt: '2596', commentCnt: '41', image: feed6 },
+            { sno: 6, likeCnt: '2867', commentCnt: '43', image: feed5 },
+            { sno: 7, likeCnt: '3755', commentCnt: '36', image: feed8 },
+            { sno: 8, likeCnt: '2100', commentCnt: '46', image: feed7 },
             { sno: 9, likeCnt: '1052', commentCnt: '25', image: feed9 },
         ];
     } else if (lastSegment === 'reels') {
@@ -101,10 +100,6 @@ const ProfileView = () => {
         setIsVisibleFollowerModal(true);
     };
 
-    const isFeedHover = (key) => {
-        setIsHover(true);
-    };
-    const hoverRef = useRef({});
     return (
         <S.Main>
             {/* {isVisibleFollowerModal ? (
@@ -206,19 +201,17 @@ const ProfileView = () => {
                                         <img src={cont.image} />
                                         <S.ReelsFeedHover
                                             key={key}
-                                            onMouseEnter={() => isFeedHover(key)}
-                                            onMouseLeave={() => setIsHover(false)}
-                                            ref={(element) => hoverRef.current[key] = element}
-                                            $ishover={isHover.toString()}
                                         >
                                             <S.ReelsFeedHoverBox>
                                                 <li>
                                                     <S.HoverLikeIcon>
+                                                        <span/>
                                                         <span>{cont.likeCnt}</span>
                                                     </S.HoverLikeIcon>
                                                 </li>
                                                 <li>
                                                     <S.HoverCommentIcon>
+                                                        <span/>
                                                         <span>{cont.commentCnt}</span>
                                                     </S.HoverCommentIcon>
                                                 </li>
@@ -229,9 +222,29 @@ const ProfileView = () => {
                             </S.ReelsFeed>
                         ) : (
                             <S.Feed>
-                                {feedCont.map((cont) => (
-                                    <S.FeedCont key={cont.sno}>
+                                {feedCont.map((cont, key) => (
+                                    <S.FeedCont
+                                        key={cont.sno}
+                                    >
                                         <img src={cont.image} />
+                                        <S.FeedHover
+                                            key={key}
+                                        >
+                                            <S.FeedHoverBox>
+                                                <li>
+                                                    <S.HoverLikeIcon>
+                                                        <span/>
+                                                        <span>{cont.likeCnt}</span>
+                                                    </S.HoverLikeIcon>
+                                                </li>
+                                                <li>
+                                                    <S.HoverCommentIcon>
+                                                        <span/>
+                                                        <span>{cont.commentCnt}</span>
+                                                    </S.HoverCommentIcon>
+                                                </li>
+                                            </S.FeedHoverBox>
+                                        </S.FeedHover>
                                     </S.FeedCont>
                                 ))}
                             </S.Feed>
