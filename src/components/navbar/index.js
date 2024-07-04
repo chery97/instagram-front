@@ -321,7 +321,7 @@ const Navbar = () => {
             }}>
                 <NavBarLayout>
                     <LogoBox>
-                        <LogoInner to={'/'}>
+                        <LogoInner to={'/main'}>
                             <Pc>
                                 <img src={
                                     isSubLayoutVisible !== 'Search' ?
