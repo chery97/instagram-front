@@ -23,14 +23,16 @@ const NavbarContainer = styled.div`
     background-color: black;
     ${mediaQueries.mobile} {
     font-size: 16px;
-    z-index: 3;
+    z-index: 1;
   }
   ${mediaQueries.tablet} {
     font-size: 16px;
     width: fit-content;
+      z-index: 1;
   }
   ${mediaQueries.desktop} {
     font-size: 16px;
+      z-index: 1;
   }
 `;
 
