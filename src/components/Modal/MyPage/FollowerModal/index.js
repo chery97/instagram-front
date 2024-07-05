@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import profileImage from '../../../../asset/images/profile.png';
 import { Modal } from '../../index';
-import useIntersectionObserver from '../../../../hooks/useIntersectionObserver';
-import { useEffect, useState } from 'react';
+// import useIntersectionObserver from '../../../../hooks/useIntersectionObserver';
+// import { useEffect, useState } from 'react';
 
 const Container = styled.div`
     position: fixed;
