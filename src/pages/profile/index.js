@@ -1,4 +1,5 @@
-import React, {useRef, useState} from 'react';
+import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useLocation, useParams } from 'react-router-dom';
 import article from '../../asset/icons/profile/article.svg';
 import reels from '../../asset/icons/profile/reels.svg';
@@ -17,6 +18,7 @@ import FollowerModal from '../../components/Modal/MyPage/FollowerModal';
 import Navbar from '../../components/navbar';
 import { ProfileStyled as S } from './index.styled';
 import FollowModal from '../../components/Modal/MyPage/FollowModal';
+import { feed } from '../../api/feed';
 
 const ProfileView = () => {
     const params = useParams();
@@ -53,6 +55,16 @@ const ProfileView = () => {
     const [isVisibleFollowModal, setIsVisibleFollowModal] = useState(false);
 
     let feedCont;
+    const {
+        data: feedList,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: ['feedList'],
+        queryFn: async () => await feed.getFeed(),
+        select: (res) => res.data,
+    });
+    console.log(feedList);
     if (pathSegments.length === 3) {
         feedCont = [
             { sno: 1, likeCnt: '244.4만', commentCnt: '6305', image: feed1 },
@@ -120,140 +132,149 @@ const ProfileView = () => {
                 <S.Contents>
                     <S.ContentsInner>
                         <S.ProfileContents>
-                        {/* joy님 해주세요 */}
-                        <S.DashBoard>
-                            <S.Profile>
-                                {profile.map((item) => (
-                                    <>
-                                        <S.ImageBox>
-                                            <img src={item.memImage} alt='' />
-                                            <S.Tooltip>메모</S.Tooltip>
-                                        </S.ImageBox>
-                                        <S.InfoBox>
-                                            <S.TopRow>
-                                                <S.Name>{item.memId}</S.Name>
-                                                <S.LinkTag to=''>
-                                                    <span>프로필 편집</span>
-                                                </S.LinkTag>
-                                                <S.LinkTag to=''>
-                                                    <span>
-                                                        보관된 스토리 보기
-                                                    </span>
-                                                </S.LinkTag>
-                                                <S.Setting></S.Setting>
-                                            </S.TopRow>
-                                            <S.MiddleRow>
-                                                <S.Post>
-                                                    게시물{' '}
-                                                    <strong>
-                                                        {item.postCnt}
-                                                    </strong>
-                                                </S.Post>
-                                                <S.Follower
-                                                    onClick={
-                                                        onFollowerModalOpen
-                                                    }
-                                                >
-                                                    팔로워{' '}
-                                                    <strong>
-                                                        {item.followerCnt}
-                                                    </strong>
-                                                </S.Follower>
-                                                <S.Follow
-                                                    onClick={() =>
-                                                        setIsVisibleFollowModal(
-                                                            true,
-                                                        )
-                                                    }
-                                                >
-                                                    팔로우{' '}
-                                                    <strong>
-                                                        {item.followCnt}
-                                                    </strong>
-                                                </S.Follow>
-                                            </S.MiddleRow>
-                                            <S.BottomRow>
-                                                {item.memName}
-                                            </S.BottomRow>
-                                        </S.InfoBox>
-                                    </>
-                                ))}
-                            </S.Profile>
-                            <S.Highlight></S.Highlight>
-                        </S.DashBoard>
-                        <S.FeedTab>
-                            {tabCont.map((contents) => (
-                                <S.FeedTabCont
-                                    to={
-                                        contents.id === 'article'
-                                            ? `/profile/${params.memId}`
-                                            : `/profile/${params.memId}/${contents.id}`
-                                    }
-                                    key={contents.id}
-                                >
-                                    <img src={contents.image} />
-                                    <span>{contents.label}</span>
-                                </S.FeedTabCont>
-                            ))}
-                        </S.FeedTab>
-                        {lastSegment === 'reels' ? (
-                            <S.ReelsFeed>
-                                {feedCont.map((cont, key) => (
-                                    <S.ReelsCont
-                                        key={cont.sno}
+                            {/* joy님 해주세요 */}
+                            <S.DashBoard>
+                                <S.Profile>
+                                    {profile.map((item) => (
+                                        <>
+                                            <S.ImageBox>
+                                                <img
+                                                    src={item.memImage}
+                                                    alt=''
+                                                />
+                                                <S.Tooltip>메모</S.Tooltip>
+                                            </S.ImageBox>
+                                            <S.InfoBox>
+                                                <S.TopRow>
+                                                    <S.Name>
+                                                        {item.memId}
+                                                    </S.Name>
+                                                    <S.LinkTag to=''>
+                                                        <span>프로필 편집</span>
+                                                    </S.LinkTag>
+                                                    <S.LinkTag to=''>
+                                                        <span>
+                                                            보관된 스토리 보기
+                                                        </span>
+                                                    </S.LinkTag>
+                                                    <S.Setting></S.Setting>
+                                                </S.TopRow>
+                                                <S.MiddleRow>
+                                                    <S.Post>
+                                                        게시물{' '}
+                                                        <strong>
+                                                            {item.postCnt}
+                                                        </strong>
+                                                    </S.Post>
+                                                    <S.Follower
+                                                        onClick={
+                                                            onFollowerModalOpen
+                                                        }
+                                                    >
+                                                        팔로워{' '}
+                                                        <strong>
+                                                            {item.followerCnt}
+                                                        </strong>
+                                                    </S.Follower>
+                                                    <S.Follow
+                                                        onClick={() =>
+                                                            setIsVisibleFollowModal(
+                                                                true,
+                                                            )
+                                                        }
+                                                    >
+                                                        팔로우{' '}
+                                                        <strong>
+                                                            {item.followCnt}
+                                                        </strong>
+                                                    </S.Follow>
+                                                </S.MiddleRow>
+                                                <S.BottomRow>
+                                                    {item.memName}
+                                                </S.BottomRow>
+                                            </S.InfoBox>
+                                        </>
+                                    ))}
+                                </S.Profile>
+                                <S.Highlight></S.Highlight>
+                            </S.DashBoard>
+                            <S.FeedTab>
+                                {tabCont.map((contents) => (
+                                    <S.FeedTabCont
+                                        to={
+                                            contents.id === 'article'
+                                                ? `/profile/${params.memId}`
+                                                : `/profile/${params.memId}/${contents.id}`
+                                        }
+                                        key={contents.id}
                                     >
-                                        <img src={cont.image} />
-                                        <S.ReelsFeedHover
-                                            key={key}
-                                        >
-                                            <S.ReelsFeedHoverBox>
-                                                <li>
-                                                    <S.HoverLikeIcon>
-                                                        <span/>
-                                                        <span>{cont.likeCnt}</span>
-                                                    </S.HoverLikeIcon>
-                                                </li>
-                                                <li>
-                                                    <S.HoverCommentIcon>
-                                                        <span/>
-                                                        <span>{cont.commentCnt}</span>
-                                                    </S.HoverCommentIcon>
-                                                </li>
-                                            </S.ReelsFeedHoverBox>
-                                        </S.ReelsFeedHover>
-                                    </S.ReelsCont>
+                                        <img src={contents.image} />
+                                        <span>{contents.label}</span>
+                                    </S.FeedTabCont>
                                 ))}
-                            </S.ReelsFeed>
-                        ) : (
-                            <S.Feed>
-                                {feedCont.map((cont, key) => (
-                                    <S.FeedCont
-                                        key={cont.sno}
-                                    >
-                                        <img src={cont.image} />
-                                        <S.FeedHover
-                                            key={key}
-                                        >
-                                            <S.FeedHoverBox>
-                                                <li>
-                                                    <S.HoverLikeIcon>
-                                                        <span/>
-                                                        <span>{cont.likeCnt}</span>
-                                                    </S.HoverLikeIcon>
-                                                </li>
-                                                <li>
-                                                    <S.HoverCommentIcon>
-                                                        <span/>
-                                                        <span>{cont.commentCnt}</span>
-                                                    </S.HoverCommentIcon>
-                                                </li>
-                                            </S.FeedHoverBox>
-                                        </S.FeedHover>
-                                    </S.FeedCont>
-                                ))}
-                            </S.Feed>
-                        )}
-                    </S.ProfileContents>
+                            </S.FeedTab>
+                            {lastSegment === 'reels' ? (
+                                <S.ReelsFeed>
+                                    {feedCont.map((cont, key) => (
+                                        <S.ReelsCont key={cont.sno}>
+                                            <img src={cont.image} />
+                                            <S.ReelsFeedHover key={key}>
+                                                <S.ReelsFeedHoverBox>
+                                                    <li>
+                                                        <S.HoverLikeIcon>
+                                                            <span />
+                                                            <span>
+                                                                {cont.likeCnt}
+                                                            </span>
+                                                        </S.HoverLikeIcon>
+                                                    </li>
+                                                    <li>
+                                                        <S.HoverCommentIcon>
+                                                            <span />
+                                                            <span>
+                                                                {
+                                                                    cont.commentCnt
+                                                                }
+                                                            </span>
+                                                        </S.HoverCommentIcon>
+                                                    </li>
+                                                </S.ReelsFeedHoverBox>
+                                            </S.ReelsFeedHover>
+                                        </S.ReelsCont>
+                                    ))}
+                                </S.ReelsFeed>
+                            ) : (
+                                <S.Feed>
+                                    {feedCont.map((cont, key) => (
+                                        <S.FeedCont key={cont.sno}>
+                                            <img src={cont.image} />
+                                            <S.FeedHover key={key}>
+                                                <S.FeedHoverBox>
+                                                    <li>
+                                                        <S.HoverLikeIcon>
+                                                            <span />
+                                                            <span>
+                                                                {cont.likeCnt}
+                                                            </span>
+                                                        </S.HoverLikeIcon>
+                                                    </li>
+                                                    <li>
+                                                        <S.HoverCommentIcon>
+                                                            <span />
+                                                            <span>
+                                                                {
+                                                                    cont.commentCnt
+                                                                }
+                                                            </span>
+                                                        </S.HoverCommentIcon>
+                                                    </li>
+                                                </S.FeedHoverBox>
+                                            </S.FeedHover>
+                                        </S.FeedCont>
+                                    ))}
+                                </S.Feed>
+                            )}
+                        </S.ProfileContents>
                     </S.ContentsInner>
                 </S.Contents>
             </S.Inner>
