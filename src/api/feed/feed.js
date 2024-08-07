@@ -1,12 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
-import { GetFeedResponse } from '../../models/feed';
+import axios from 'axios';
 
-const feed = {
-    getFeed: Promise<AxiosResponse<GetFeedResponse>> => {
-        const url = `http://localhost:8080/feed/list`;
-        const reponse = axios.get(url);
-        return reponse;
-    },
+export const Feed = async () => {
+    const HappyURL = 'http://localhost:8080/feed/list';
+    return await axios.get(HappyURL);
 };
-
-export default feed;

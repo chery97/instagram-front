@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation, useParams } from 'react-router-dom';
 import article from '../../asset/icons/profile/article.svg';
@@ -14,11 +14,10 @@ import feed7 from '../../asset/images/feed-7.jpeg';
 import feed8 from '../../asset/images/feed-8.jpeg';
 import feed9 from '../../asset/images/feed-9.jpeg';
 import profileImage from '../../asset/images/profile.png';
-import FollowerModal from '../../components/Modal/MyPage/FollowerModal';
 import Navbar from '../../components/navbar';
 import { ProfileStyled as S } from './index.styled';
 import FollowModal from '../../components/Modal/MyPage/FollowModal';
-import { feed } from '../../api/feed';
+import { Feed } from '../../api/feed/feed';
 
 const ProfileView = () => {
     const params = useParams();
@@ -54,32 +53,56 @@ const ProfileView = () => {
     const [isVisibleFollowerModal, setIsVisibleFollowerModal] = useState(false);
     const [isVisibleFollowModal, setIsVisibleFollowModal] = useState(false);
 
+    const [listData, setListData] = useState([]);
+
     let feedCont;
+
+    const target = useMemo(() => {
+        if (pathSegments.length === 3) {
+            return 'POST';
+        }
+
+        if (lastSegment === 'reels') {
+            return 'REELS';
+        }
+
+        if (lastSegment === 'tagged') {
+            return 'TAGGED';
+        }
+    }, [pathSegments, lastSegment]);
+
     const {
         data: feedList,
         isLoading,
         isError,
     } = useQuery({
-        queryKey: ['feedList'],
-        queryFn: async () => await feed.getFeed(),
+        queryKey: ['feedData'],
+        queryFn: async () => {
+            const result = await Feed();
+            setListData(result.data);
+            return result.data;
+        },
         select: (res) => res.data,
+        enabled: target === 'POST',
     });
-    console.log(feedList);
+    console.log(listData);
+
     if (pathSegments.length === 3) {
-        feedCont = [
-            { sno: 1, likeCnt: '244.4만', commentCnt: '6305', image: feed1 },
-            { sno: 2, likeCnt: '121.5만', commentCnt: '3596', image: feed2 },
-            { sno: 3, likeCnt: '17.6만', commentCnt: '487', image: feed3 },
-            { sno: 4, likeCnt: '934', commentCnt: '11', image: feed4 },
-            { sno: 5, likeCnt: '2867', commentCnt: '43', image: feed5 },
-            { sno: 6, likeCnt: '2596', commentCnt: '41', image: feed6 },
-            { sno: 7, likeCnt: '2100', commentCnt: '46', image: feed7 },
-            { sno: 8, likeCnt: '3755', commentCnt: '36', image: feed8 },
-            { sno: 9, likeCnt: '1052', commentCnt: '25', image: feed9 },
-            { sno: 10, likeCnt: '934', commentCnt: '11', image: feed4 },
-            { sno: 11, likeCnt: '2596', commentCnt: '41', image: feed6 },
-            { sno: 12, likeCnt: '3755', commentCnt: '36', image: feed8 },
-        ];
+        // feedCont = [
+        //     { sno: 1, likeCnt: '244.4만', commentCnt: '6305', image: feed1 },
+        //     { sno: 2, likeCnt: '121.5만', commentCnt: '3596', image: feed2 },
+        //     { sno: 3, likeCnt: '17.6만', commentCnt: '487', image: feed3 },
+        //     { sno: 4, likeCnt: '934', commentCnt: '11', image: feed4 },
+        //     { sno: 5, likeCnt: '2867', commentCnt: '43', image: feed5 },
+        //     { sno: 6, likeCnt: '2596', commentCnt: '41', image: feed6 },
+        //     { sno: 7, likeCnt: '2100', commentCnt: '46', image: feed7 },
+        //     { sno: 8, likeCnt: '3755', commentCnt: '36', image: feed8 },
+        //     { sno: 9, likeCnt: '1052', commentCnt: '25', image: feed9 },
+        //     { sno: 10, likeCnt: '934', commentCnt: '11', image: feed4 },
+        //     { sno: 11, likeCnt: '2596', commentCnt: '41', image: feed6 },
+        //     { sno: 12, likeCnt: '3755', commentCnt: '36', image: feed8 },
+        // ];
+        feedCont = listData;
     }
 
     if (lastSegment === 'tagged') {
