@@ -11,6 +11,8 @@ import { Navigation } from 'swiper/modules';
 import Alert from '../../asset/icons/nav-bar-alert.svg';
 import Message from '../../asset/icons/nav-bar-message.svg';
 import FeedServiceModal from '../../components/Modal/FeedServiceModal';
+import { useQuery } from 'react-query';
+import Post from '../../api/post/post';
 
 const MainFeed = () => {
     const isMobileSize = isMobile();
@@ -25,7 +27,7 @@ const MainFeed = () => {
                 nextEl: '.swiper-button-next-event',
             },
         };
-    });
+    }, []);
 
     const SettingsFeed = useMemo(() => {
         return {
@@ -36,7 +38,7 @@ const MainFeed = () => {
                 nextEl: '.swiper-button-next-event',
             },
         };
-    });
+    }, []);
 
     const MockData = [
         {
@@ -91,17 +93,29 @@ const MainFeed = () => {
         'https://picsum.photos/id/239/500/500',
     ];
 
-    const FeedContents = [
-        {
-            profileImage: 'https://picsum.photos/id/237/65/65',
-            name: 'ynfloral_5',
-            time: dayjs().format('MM월DD일'),
-            contentImage: postImageData.map((a) => a),
-            likePeople: 'hanwhaeagles_soori',
-            contents:
-                '오늘 때려 낸 시즌 10호 홈런으로 2시즌 연속 두 자리 수 홈런 기록한 노시환🦅 홈런 치고 페라자와 행복한 시간',
+    const { data, isFetching } = useQuery({
+        queryKey: ['postList'],
+        queryFn: async () => {
+            const { data } = await Post.getPostList();
+
+            return data;
         },
-    ];
+        // placeholderData: keepPreviousData,
+        enabled: true,
+    });
+
+    const FeedContents = data?.map((feed) => {
+        return {
+            profileImage: feed.userProfileImage,
+            name: feed.userName,
+            time: dayjs(feed.createdAt, 'YYYY-MM-DD HH:mm:ss').format(
+                'MM월DD일',
+            ),
+            contentImage: postImageData.map((a) => a),
+            likePeople: feed.userName,
+            contents: feed.contents,
+        };
+    });
 
     const [isVisibleModal, setIsVisibleModal] = useState(false);
 
@@ -139,9 +153,13 @@ const MainFeed = () => {
                         </S.StorySection>
                         <S.FeedSection>
                             <S.Feed>
-                                {FeedContents.map((item) => {
+                                {FeedContents?.map((item, index) => {
                                     return (
-                                        <>
+                                        <React.Fragment
+                                            key={`${item.name}-${index}`}
+                                        >
+                                            {' '}
+                                            {/* 인덱스를 추가하여 유일성 보장 */}
                                             <S.Header>
                                                 <div>
                                                     <S.Profile>
@@ -166,14 +184,11 @@ const MainFeed = () => {
                                             <S.Photo>
                                                 <S.SwiperWrap {...SettingsFeed}>
                                                     {item.contentImage.map(
-                                                        (image) => {
+                                                        (image, imgIndex) => {
                                                             return (
                                                                 <S.Slide
-                                                                    key={
-                                                                        item.name
-                                                                    }
+                                                                    key={`${item.name}-image-${imgIndex}`}
                                                                 >
-                                                                    {' '}
                                                                     <img
                                                                         src={
                                                                             image
@@ -216,7 +231,7 @@ const MainFeed = () => {
                                                     <span>더보기</span>
                                                 </S.Text>
                                             </S.Post>
-                                        </>
+                                        </React.Fragment>
                                     );
                                 })}
                             </S.Feed>
