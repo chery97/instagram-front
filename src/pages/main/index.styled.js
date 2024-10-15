@@ -116,6 +116,19 @@ const Post = styled.div`
     gap: 5px;
 `;
 
+const Comment = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+`;
+
+const CommentInputBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+`;
+
 const Text = styled.div``;
 
 const Recommend = styled.div`
@@ -207,6 +220,8 @@ export const MainFeedStyled = {
     BookMark,
     LikePeople,
     Post,
+    Comment,
+    CommentInputBox,
     Text,
     Recommend,
     ProfileBox,
