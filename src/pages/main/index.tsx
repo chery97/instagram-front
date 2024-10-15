@@ -10,6 +10,9 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import Alert from '../../asset/icons/nav-bar-alert.svg';
 import Message from '../../asset/icons/nav-bar-message.svg';
+import MainFeedEmoji from '../../asset/icons/main-feed-emoji.svg';
+import MainFeedComment from '../../asset/icons/main-feed-comment.svg';
+import MainFeedSave from '../../asset/icons/main-feed-save.svg';
 import FeedServiceModal from '../../components/Modal/FeedServiceModal';
 import { useQuery } from 'react-query';
 import Post from '../../api/post/post';
@@ -100,22 +103,11 @@ const MainFeed = () => {
 
             return data;
         },
-        // placeholderData: keepPreviousData,
         enabled: true,
     });
 
-    const FeedContents = data?.map((feed) => {
-        return {
-            profileImage: feed.userProfileImage,
-            name: feed.userName,
-            time: dayjs(feed.createdAt, 'YYYY-MM-DD HH:mm:ss').format(
-                'MM월DD일',
-            ),
-            contentImage: postImageData.map((a) => a),
-            likePeople: feed.userName,
-            contents: feed.contents,
-        };
-    });
+    const FeedContents = data;
+    console.log(FeedContents);
 
     const [isVisibleModal, setIsVisibleModal] = useState(false);
 
@@ -156,7 +148,7 @@ const MainFeed = () => {
                                 {FeedContents?.map((item, index) => {
                                     return (
                                         <React.Fragment
-                                            key={`${item.name}-${index}`}
+                                            key={`${item.userName}-${index}`}
                                         >
                                             {' '}
                                             {/* 인덱스를 추가하여 유일성 보장 */}
@@ -165,13 +157,20 @@ const MainFeed = () => {
                                                     <S.Profile>
                                                         <img
                                                             src={
-                                                                item.profileImage
+                                                                item.userProfileImage
                                                             }
                                                             alt=''
                                                         />
                                                     </S.Profile>
-                                                    <S.Name>{item.name}</S.Name>
-                                                    <S.Time>{item.time}</S.Time>
+                                                    <S.Name>
+                                                        {item.userName}
+                                                    </S.Name>
+                                                    <S.Time>
+                                                        {dayjs(
+                                                            item.createdAt,
+                                                            'YYYY-MM-DD HH:mm:ss',
+                                                        ).format('MM월DD일')}
+                                                    </S.Time>
                                                 </div>
                                                 <S.AddButton
                                                     onClick={() =>
@@ -183,15 +182,15 @@ const MainFeed = () => {
                                             </S.Header>
                                             <S.Photo>
                                                 <S.SwiperWrap {...SettingsFeed}>
-                                                    {item.contentImage.map(
+                                                    {item.imageUrls.map(
                                                         (image, imgIndex) => {
                                                             return (
                                                                 <S.Slide
-                                                                    key={`${item.name}-image-${imgIndex}`}
+                                                                    key={`${item.userName}-image-${imgIndex}`}
                                                                 >
                                                                     <img
                                                                         src={
-                                                                            image
+                                                                            image.url
                                                                         }
                                                                         alt=''
                                                                     />
@@ -209,7 +208,14 @@ const MainFeed = () => {
                                                             alt='likeIcon'
                                                         />
                                                     </S.Like>
-                                                    <S.Reply>댓글</S.Reply>
+                                                    <S.Reply>
+                                                        <img
+                                                            src={
+                                                                MainFeedComment
+                                                            }
+                                                            alt='mainFeedCommentIcon'
+                                                        />
+                                                    </S.Reply>
                                                     <S.Share>
                                                         <img
                                                             src={Message}
@@ -217,20 +223,43 @@ const MainFeed = () => {
                                                         />
                                                     </S.Share>
                                                 </div>
-                                                <S.BookMark>저장</S.BookMark>
+                                                <S.BookMark>
+                                                    <img
+                                                        src={MainFeedSave}
+                                                        alt='mainFeedSaveIcon'
+                                                    />
+                                                </S.BookMark>
                                             </S.ActionIcon>
                                             <S.LikePeople>
-                                                {item.likePeople}님{' '}
+                                                {item.userName}님{' '}
                                                 <span>여러 명</span>이
                                                 좋아합니다
                                             </S.LikePeople>
                                             <S.Post>
-                                                <S.Name>{item.name}</S.Name>
+                                                <S.Name>{item.userName}</S.Name>
                                                 <S.Text>
                                                     {item.contents}
                                                     <span>더보기</span>
                                                 </S.Text>
                                             </S.Post>
+                                            {item.comments.length > 0 && (
+                                                <S.Comment>
+                                                    <S.Text>
+                                                        댓글{' '}
+                                                        {item.comments.length}개
+                                                        모두 보기
+                                                    </S.Text>
+                                                </S.Comment>
+                                            )}
+                                            <S.CommentInputBox>
+                                                <input
+                                                    placeholder={'댓글 달기...'}
+                                                />
+                                                <img
+                                                    src={MainFeedEmoji}
+                                                    alt='mainFeedEmojiIcon'
+                                                />
+                                            </S.CommentInputBox>
                                         </React.Fragment>
                                     );
                                 })}
