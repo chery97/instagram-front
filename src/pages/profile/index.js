@@ -17,7 +17,7 @@ import profileImage from '../../asset/images/profile.png';
 import Navbar from '../../components/navbar';
 import { ProfileStyled as S } from './index.styled';
 import FollowModal from '../../components/Modal/MyPage/FollowModal';
-import { Feed } from '../../api/feed/feed';
+import Feed from '../../api/feed/feed';
 
 const ProfileView = () => {
     const params = useParams();
@@ -78,14 +78,14 @@ const ProfileView = () => {
     } = useQuery({
         queryKey: ['feedData'],
         queryFn: async () => {
-            const result = await Feed();
+            const result = await Feed.getPostList();
             setListData(result.data);
             return result.data;
         },
         select: (res) => res.data,
         enabled: target === 'POST',
     });
-    console.log(listData);
+    console.log(feedList);
 
     if (pathSegments.length === 3) {
         // feedCont = [
@@ -102,7 +102,7 @@ const ProfileView = () => {
         //     { sno: 11, likeCnt: '2596', commentCnt: '41', image: feed6 },
         //     { sno: 12, likeCnt: '3755', commentCnt: '36', image: feed8 },
         // ];
-        feedCont = listData;
+        feedCont = listData || [];
     }
 
     if (lastSegment === 'tagged') {
