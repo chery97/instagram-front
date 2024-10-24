@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Modal from '..';
+import { Modal } from '../index';
 
 const FeedServiceModal = ({ onClose }) => {
     const serviceList = [
@@ -43,76 +43,58 @@ const FeedServiceModal = ({ onClose }) => {
 
     return (
         <>
-            {/* <Modal
-                children={
-                    <>
-                        <div
-                            onClick={onClose}
-                            style={{
-                                position: 'fixed',
-                                top: '0',
-                                left: '0',
-                                width: '100vw',
-                                height: '100vh',
-                                background: 'rgba(0,0,0,.5)',
-                                zIndex: 10,
-                            }}
-                        ></div>
-                        <div
-                            style={{
-                                position: 'fixed',
-                                top: '50%',
-                                left: '50%',
-                                transform: 'translate(-50%, -50%)',
-                                width: '400px',
-                                height: '432px',
-                                background: '#fff',
-                                borderRadius: '12px',
-                                zIndex: 15,
-                            }}
-                        >
-                            <ul style={{ height: '100%' }}>
-                                {serviceList.map((item) => {
-                                    return (
-                                        <li
-                                            style={{
-                                                height: 'calc(100% / 9)',
-                                                display: 'flex',
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                borderBottom:
-                                                    '1px solid #dbdbdb',
-                                                fontSize: '14px',
-                                                fontWeight:
-                                                    item.fontWeight ?? '500',
-                                                color: item.color ?? '#000',
-                                            }}
-                                        >
-                                            <Link to={item.path}>
-                                                {item.title}
-                                            </Link>
-                                        </li>
-                                    );
-                                })}
-                                <li
-                                    style={{
-                                        height: 'calc(100% / 9)',
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        fontSize: '14px',
-                                        fontWeight: '500',
-                                        color: '#000',
-                                    }}
-                                >
-                                    <button onClick={onClose}>취소</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </>
-                }
-            ></Modal> */}
-            hohohohoho!!!!!!!!!!!!
+            <Modal isOpen={true} onClose={onClose}>
+                <Modal.Body bodyStyle={{ backgroundColor: 'unset' }}>
+                    <div
+                        style={{
+                            position: 'fixed',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '400px',
+                            height: '432px',
+                            background: '#fff',
+                            borderRadius: '12px',
+                            zIndex: 15,
+                        }}
+                    >
+                        <ul style={{ height: '100%' }}>
+                            {serviceList.map((item) => {
+                                return (
+                                    <li
+                                        style={{
+                                            height: 'calc(100% / 9)',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            borderBottom: '1px solid #dbdbdb',
+                                            fontSize: '14px',
+                                            fontWeight:
+                                                item.fontWeight ?? '500',
+                                            color: item.color ?? '#000',
+                                        }}
+                                    >
+                                        <Link to={item.path}>{item.title}</Link>
+                                    </li>
+                                );
+                            })}
+                            <li
+                                style={{
+                                    height: 'calc(100% / 9)',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    fontSize: '14px',
+                                    fontWeight: '500',
+                                    color: '#000',
+                                }}
+                            >
+                                <button onClick={onClose}>취소</button>
+                            </li>
+                        </ul>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </>
     );
 };

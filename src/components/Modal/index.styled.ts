@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaQueries } from '../../utils/mediaQueries';
 
 const DimmedContainer = styled.div`
     position: fixed;
@@ -11,7 +12,30 @@ const DimmedContainer = styled.div`
     width: 100vw;
 `;
 
-const ModalContainer = styled.div``;
+const ModalContainer = styled.div<{ $isFullSize?: boolean }>`
+    z-index: 13;
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    //background-color: #ffffff;
+    height: ${(props) =>
+        props.$isFullSize ? 'calc(var(--vh, 1vh) * 100)' : 'auto'};
+    border-radius: ${(props) => (props.$isFullSize ? '0' : '30px 30px 0 0')};
+    overflow: ${(props) => (props.$isFullSize ? 'auto' : 'visible')};
+
+    ${mediaQueries.desktop} {
+        width: 80vw;
+        height: auto;
+        border-radius: 30px;
+        margin: auto;
+        top: 50%;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        overflow: visible;
+    }
+`;
 
 const HeaderContainer = styled.div`
     position: relative;

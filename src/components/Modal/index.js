@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 
 import { isMobile } from '../../utils/mediaQueries';
-import { ModalStyle as S } from '../Modal/index.styled';
+import { ModalStyle as S } from './index.styled';
 import Portal from '../Modal/Portal/index';
 
 const Dimmed = ({ children, dimmedLevel, onClose, ...props }) => {

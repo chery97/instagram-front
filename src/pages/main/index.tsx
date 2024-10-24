@@ -16,6 +16,7 @@ import MainFeedSave from '../../asset/icons/main-feed-save.svg';
 import FeedServiceModal from '../../components/Modal/FeedServiceModal';
 import { useQuery } from 'react-query';
 import Post from '../../api/post/post';
+import FeedViewModal from '../../components/Modal/FeedViewModal';
 
 const MainFeed = () => {
     const isMobileSize = isMobile();
@@ -107,9 +108,10 @@ const MainFeed = () => {
     });
 
     const FeedContents = data;
-    console.log(FeedContents);
 
     const [isVisibleModal, setIsVisibleModal] = useState(false);
+    const [isViewVisibleModal, setIsViewVisibleModal] = useState(false);
+    console.log(isViewVisibleModal);
 
     return (
         <S.Main>
@@ -117,6 +119,15 @@ const MainFeed = () => {
                 <>
                     <FeedServiceModal
                         onClose={() => setIsVisibleModal(false)}
+                    />
+                </>
+            ) : (
+                <></>
+            )}
+            {isViewVisibleModal ? (
+                <>
+                    <FeedViewModal
+                        onClose={() => setIsViewVisibleModal(false)}
                     />
                 </>
             ) : (
@@ -214,6 +225,11 @@ const MainFeed = () => {
                                                                 MainFeedComment
                                                             }
                                                             alt='mainFeedCommentIcon'
+                                                            onClick={() =>
+                                                                setIsViewVisibleModal(
+                                                                    true,
+                                                                )
+                                                            }
                                                         />
                                                     </S.Reply>
                                                     <S.Share>
@@ -244,7 +260,13 @@ const MainFeed = () => {
                                             </S.Post>
                                             {item.comments.length > 0 && (
                                                 <S.Comment>
-                                                    <S.Text>
+                                                    <S.Text
+                                                        onClick={() =>
+                                                            setIsViewVisibleModal(
+                                                                true,
+                                                            )
+                                                        }
+                                                    >
                                                         댓글{' '}
                                                         {item.comments.length}개
                                                         모두 보기
