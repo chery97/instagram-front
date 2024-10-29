@@ -9,6 +9,14 @@ const post = {
             method: 'GET',
             url: '/api/post',
         }),
+
+    getPost: (
+        postId: number, // params?: QrManagerParamTypes,
+    ): Promise<AxiosResponse<PostListResponseTypes[]>> =>
+        authRequest({
+            method: 'GET',
+            url: `/api/post/${postId}`,
+        }),
 };
 
 export default post;

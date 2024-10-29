@@ -111,7 +111,6 @@ const MainFeed = () => {
 
     const [isVisibleModal, setIsVisibleModal] = useState(false);
     const [isViewVisibleModal, setIsViewVisibleModal] = useState(false);
-    console.log(isViewVisibleModal);
 
     return (
         <S.Main>

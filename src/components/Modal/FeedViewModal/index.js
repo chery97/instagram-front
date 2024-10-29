@@ -1,5 +1,5 @@
 import { Modal } from '../index';
-import FeedView from '../../feedview/index';
+import FeedView from '../../feedview';
 import React from 'react';
 
 const FeedViewModal = ({ onClose }) => {
