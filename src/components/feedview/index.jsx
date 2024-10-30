@@ -22,8 +22,9 @@ import Insta1 from '../../asset/images/insta-main-1.png';
 import Insta2 from '../../asset/images/insta-main-2.png';
 import Insta3 from '../../asset/images/insta-main-3.png';
 import Insta4 from '../../asset/images/insta-main-4.png';
+import dayjs from 'dayjs';
 
-const FeedView = () => {
+const FeedView = ({ postId }) => {
     const textRef = useRef();
     const handleResizeHeight = useCallback(() => {
         textRef.current.style.height = textRef.current.scrollHeight + 'px';
@@ -159,7 +160,7 @@ const FeedView = () => {
     } = useQuery({
         queryKey: ['postData'],
         queryFn: async () => {
-            const { data } = await Post.getPost(1);
+            const { data } = await Post.getPost(postId);
             return data;
         },
         enabled: true,
@@ -260,7 +261,12 @@ const FeedView = () => {
                                             </S.Comment>
                                         </S.ProfileCont>
                                         <S.CommentFuncBox>
-                                            <time>{feedView.regDt}</time>
+                                            <time>
+                                                {dayjs(
+                                                    feedView.regDt,
+                                                    'YYYY-MM-DD HH:mm:ss',
+                                                ).format('MM월DD일')}
+                                            </time>
                                         </S.CommentFuncBox>
                                     </S.CommentInfo>
                                 </S.CommentBox>
@@ -321,7 +327,12 @@ const FeedView = () => {
                             </S.LikeBox>
                             <S.DateBox>
                                 <Link to={'/'}>
-                                    <span>{feedView.regDt}</span>
+                                    <span>
+                                        {dayjs(
+                                            feedView.regDt,
+                                            'YYYY-MM-DD HH:mm:ss',
+                                        ).format('MM월DD일')}
+                                    </span>
                                 </Link>
                             </S.DateBox>
                             <S.ReplyBox>

@@ -2,7 +2,7 @@ import { Modal } from '../index';
 import FeedView from '../../feedview';
 import React from 'react';
 
-const FeedViewModal = ({ onClose }) => {
+const FeedViewModal = ({ postId, onClose }) => {
     return (
         <>
             <Modal isOpen={true} onClose={onClose}>
@@ -16,7 +16,7 @@ const FeedViewModal = ({ onClose }) => {
                             alignItems: 'center',
                         }}
                     >
-                        <FeedView />
+                        <FeedView postId={postId} />
                     </div>
                 </Modal.Body>
             </Modal>

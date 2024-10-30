@@ -110,7 +110,7 @@ const MainFeed = () => {
     const FeedContents = data;
 
     const [isVisibleModal, setIsVisibleModal] = useState(false);
-    const [isViewVisibleModal, setIsViewVisibleModal] = useState(false);
+    const [postId, setPostId] = useState<number | null>(null);
 
     return (
         <S.Main>
@@ -123,14 +123,13 @@ const MainFeed = () => {
             ) : (
                 <></>
             )}
-            {isViewVisibleModal ? (
+            {postId && (
                 <>
                     <FeedViewModal
-                        onClose={() => setIsViewVisibleModal(false)}
+                        postId={postId}
+                        onClose={() => setPostId(null)}
                     />
                 </>
-            ) : (
-                <></>
             )}
             <S.Inner>
                 <Navbar />
@@ -225,8 +224,8 @@ const MainFeed = () => {
                                                             }
                                                             alt='mainFeedCommentIcon'
                                                             onClick={() =>
-                                                                setIsViewVisibleModal(
-                                                                    true,
+                                                                setPostId(
+                                                                    item.postId,
                                                                 )
                                                             }
                                                         />
@@ -261,8 +260,8 @@ const MainFeed = () => {
                                                 <S.Comment>
                                                     <S.Text
                                                         onClick={() =>
-                                                            setIsViewVisibleModal(
-                                                                true,
+                                                            setPostId(
+                                                                item.postId,
                                                             )
                                                         }
                                                     >
