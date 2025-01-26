@@ -17,6 +17,7 @@ import { useQuery } from 'react-query';
 import Post from '../../api/post/post';
 import FeedViewModal from '../../components/Modal/FeedViewModal';
 import { useMediaQuery } from 'react-responsive';
+import Logo from '../../asset/icons/nav-bar-logo.svg';
 
 const MainFeed = () => {
     const isPc = useMediaQuery({
@@ -153,6 +154,17 @@ const MainFeed = () => {
                 <Navbar />
                 <S.Contents>
                     <S.MainContents>
+                        {isMobile && (
+                            <S.HeaderSection>
+                                <S.HeaderLogo>
+                                    <img src={Logo} alt={'logo'} />
+                                </S.HeaderLogo>
+                                <S.HeaderRightBox>
+                                    <img src={Alert} alt={'alert'} />
+                                    <img src={Message} alt={'message'} />
+                                </S.HeaderRightBox>
+                            </S.HeaderSection>
+                        )}
                         <S.StorySection>
                             <S.SwiperWrap {...Settings}>
                                 {MockData.map((item) => {

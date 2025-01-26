@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { isMobile, mediaQueries } from '../../utils/mediaQueries';
 
 const Main = styled.main``;
 
@@ -13,8 +14,13 @@ const Contents = styled.div`
     display: flex;
     justify-content: center;
     gap: 65px;
-    margin-top: 35px;
     width: 100%;
+    ${mediaQueries.desktop} {
+        margin-top: 35px;
+    }
+    ${mediaQueries.tablet} {
+        margin-top: 35px;
+    }
 `;
 
 const MainContents = styled.div`
@@ -22,7 +28,33 @@ const MainContents = styled.div`
     max-width: 630px;
 `;
 
+const HeaderSection = styled.section`
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    height: 44px;
+`;
+
+const HeaderLogo = styled.div`
+    img {
+        padding: 9px;
+        filter: invert(100%);
+    }
+`;
+
+const HeaderRightBox = styled.div`
+    display: flex;
+    filter: invert(100%);
+    img:nth-child(1) {
+        padding: 10px;
+    }
+    img {
+        padding: 10px 10px 10px 0;
+    }
+`;
+
 const StorySection = styled.section`
+    padding: 8px 0;
     .swiper-slide {
         display: flex;
         flex-direction: column;
@@ -33,6 +65,8 @@ const ImageBox = styled.div`
     border: 2px solid #000;
     border-radius: 50%;
     overflow: hidden;
+    width: 66px;
+    height: 66px;
 `;
 
 const SwiperWrap = styled(Swiper)``;
@@ -202,6 +236,9 @@ export const MainFeedStyled = {
     Inner,
     Contents,
     MainContents,
+    HeaderSection,
+    HeaderLogo,
+    HeaderRightBox,
     StorySection,
     SwiperWrap,
     Slide,
