@@ -13,16 +13,24 @@ import Search from '../../asset/icons/nav-bar-search.svg';
 import Threads from '../../asset/icons/nav-bar-threads.svg';
 import More from '../../asset/icons/nav-bar-more.svg';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 const NavbarContainer = styled.div`
     position: fixed;
-    display: flex;
     flex-shrink: 0;
     width: 244px;
     height: 100vh;
     background-color: black;
     ${mediaQueries.mobile} {
-        font-size: 16px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 48px;
+        background-color: black;
+        z-index: 10;
+        align-items: center;
+        padding: 0 12px;
     }
     ${mediaQueries.tablet} {
         font-size: 16px;
@@ -244,7 +252,36 @@ const ResultBoxTitle = styled.div`
     font-weight: 800;
 `;
 
+const BottomMenuBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    height: 100%;
+    top: 50%;
+    img {
+        width: 40px;
+        height: 40px;
+        filter: invert(100%);
+    }
+`;
+const BottomMenu = styled.div`
+    margin: auto;
+`;
+
+const BottomIconBox = styled.div`
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    img {
+        width: 24px;
+        height: 24px;
+    }
+`;
+
 const Navbar = () => {
+    const isMobile = useMediaQuery({
+        query: '(max-width:767px)',
+    });
     const mainContents = [
         { id: 'Home', label: '홈', image: { Home } },
         { id: 'Search', label: '검색', image: { Search } },
@@ -265,6 +302,18 @@ const Navbar = () => {
         { id: 'More', label: '더 보기', image: { More } },
     ];
     bottomContents.map((contents) => {
+        const id = contents.id;
+        contents.image = contents.image[id];
+    });
+
+    const bottomMenuContents = [
+        { id: 'Home', label: '홈', image: { Home } },
+        { id: 'Search', label: '검색', image: { Search } },
+        { id: 'Create', label: '만들기', image: { Create } },
+        { id: 'Reels', label: '릴스', image: { Reels } },
+        { id: 'Profile', label: '프로필', image: {} },
+    ];
+    bottomMenuContents.map((contents) => {
         const id = contents.id;
         contents.image = contents.image[id];
     });
@@ -301,74 +350,99 @@ const Navbar = () => {
                         isSubLayoutVisible === 'Search' ? 'fit-content' : null,
                 }}
             >
-                <NavBarLayout>
-                    <LogoBox>
-                        <LogoInner to={'/'}>
-                            <Pc>
-                                <img
-                                    src={
-                                        isSubLayoutVisible !== 'Search'
-                                            ? Logo
-                                            : Logo1
-                                    }
-                                    alt=''
-                                />
-                            </Pc>
-                            <Tablet>
-                                <img
-                                    src={
-                                        isSubLayoutVisible !== 'Search'
-                                            ? Logo1
-                                            : Logo
-                                    }
-                                    alt=''
-                                />
-                            </Tablet>
-                        </LogoInner>
-                    </LogoBox>
-                    <MiddleBox>
-                        {mainContents.map((contents, index) => (
+                {!isMobile ? (
+                    <NavBarLayout>
+                        <LogoBox>
+                            <LogoInner to={'/'}>
+                                <Pc>
+                                    <img
+                                        src={
+                                            isSubLayoutVisible !== 'Search'
+                                                ? Logo
+                                                : Logo1
+                                        }
+                                        alt=''
+                                    />
+                                </Pc>
+                                <Tablet>
+                                    <img
+                                        src={
+                                            isSubLayoutVisible !== 'Search'
+                                                ? Logo1
+                                                : Logo
+                                        }
+                                        alt=''
+                                    />
+                                </Tablet>
+                            </LogoInner>
+                        </LogoBox>
+                        <MiddleBox>
+                            {mainContents.map((contents, index) => (
+                                <React.Fragment key={index}>
+                                    <MiddleInner
+                                        onClick={() =>
+                                            setIsSubLayoutVisible(contents.id)
+                                        }
+                                    >
+                                        <Tablet>
+                                            <img src={contents.image} alt='' />
+                                        </Tablet>
+                                        <Pc>
+                                            <img src={contents.image} alt='' />
+                                            {isSubLayoutVisible !== 'Search' ? (
+                                                <MiddleText>
+                                                    <span>
+                                                        {contents.label}
+                                                    </span>
+                                                </MiddleText>
+                                            ) : null}
+                                        </Pc>
+                                    </MiddleInner>
+                                </React.Fragment>
+                            ))}
+                        </MiddleBox>
+                        <BottomBox>
+                            {bottomContents.map((contents, index) => (
+                                <React.Fragment key={index}>
+                                    <BottomInner>
+                                        <Tablet>
+                                            <img src={contents.image} alt='' />
+                                        </Tablet>
+                                        <Pc>
+                                            <img src={contents.image} alt='' />
+                                            {isSubLayoutVisible !== 'Search' ? (
+                                                <BottomText>
+                                                    <span>
+                                                        {contents.label}
+                                                    </span>
+                                                </BottomText>
+                                            ) : null}
+                                        </Pc>
+                                    </BottomInner>
+                                </React.Fragment>
+                            ))}
+                        </BottomBox>
+                    </NavBarLayout>
+                ) : (
+                    <BottomMenuBox>
+                        {bottomMenuContents.map((contents, index) => (
                             <React.Fragment key={index}>
-                                <MiddleInner
+                                <BottomMenu
                                     onClick={() =>
                                         setIsSubLayoutVisible(contents.id)
                                     }
                                 >
-                                    <Tablet>
-                                        <img src={contents.image} alt='' />
-                                    </Tablet>
-                                    <Pc>
-                                        <img src={contents.image} alt='' />
-                                        {isSubLayoutVisible !== 'Search' ? (
-                                            <MiddleText>
-                                                <span>{contents.label}</span>
-                                            </MiddleText>
-                                        ) : null}
-                                    </Pc>
-                                </MiddleInner>
+                                    <BottomIconBox>
+                                        <img
+                                            src={contents.image}
+                                            alt={contents.label}
+                                        />
+                                    </BottomIconBox>
+                                </BottomMenu>
                             </React.Fragment>
                         ))}
-                    </MiddleBox>
-                    <BottomBox>
-                        {bottomContents.map((contents, index) => (
-                            <React.Fragment key={index}>
-                                <BottomInner>
-                                    <Tablet>
-                                        <img src={contents.image} alt='' />
-                                    </Tablet>
-                                    <Pc>
-                                        <img src={contents.image} alt='' />
-                                        {isSubLayoutVisible !== 'Search' ? (
-                                            <BottomText>
-                                                <span>{contents.label}</span>
-                                            </BottomText>
-                                        ) : null}
-                                    </Pc>
-                                </BottomInner>
-                            </React.Fragment>
-                        ))}
-                    </BottomBox>
-                </NavBarLayout>
+                    </BottomMenuBox>
+                )}
                 {isSubLayoutVisible === 'Search' ? (
                     <SubLayout {...openSubLayout} ref={element}>
                         <SubLayoutInner>

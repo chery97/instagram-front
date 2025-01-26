@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import React, { useMemo, useState } from 'react';
 
 import Navbar from '../../components/navbar';
-import { isMobile } from '../../utils/mediaQueries';
 import { MainFeedStyled as S } from './index.styled';
 
 import 'swiper/css';
@@ -17,21 +16,40 @@ import FeedServiceModal from '../../components/Modal/FeedServiceModal';
 import { useQuery } from 'react-query';
 import Post from '../../api/post/post';
 import FeedViewModal from '../../components/Modal/FeedViewModal';
+import { useMediaQuery } from 'react-responsive';
 
 const MainFeed = () => {
-    const isMobileSize = isMobile();
-
+    const isPc = useMediaQuery({
+        query: '(min-width:1160px)',
+    });
+    const isMobile = useMediaQuery({
+        query: '(max-width:767px)',
+    });
+    const isTablet = useMediaQuery({
+        query: '(min-width:768px) and (max-width:1159px)',
+    });
+    const windowWidth = window.innerWidth;
     const Settings = useMemo(() => {
         return {
             modules: [Navigation],
-            slidesPerView: 8,
+            // slidesPerView: 9,
+            breakpoints: {
+                // 모바일 화면 (화면 너비 0px 이상)
+                0: {
+                    slidesPerView: 4, // 4개 슬라이드 표시
+                },
+                // PC 화면 (화면 너비 768px 이상)
+                768: {
+                    slidesPerView: 9, // 9개 슬라이드 표시
+                },
+            },
             spaceBetween: 15,
             navigation: {
                 prevEl: '.swiper-button-prev-event',
                 nextEl: '.swiper-button-next-event',
             },
         };
-    }, []);
+    }, [windowWidth]);
 
     const SettingsFeed = useMemo(() => {
         return {
@@ -286,7 +304,7 @@ const MainFeed = () => {
                             </S.Feed>
                         </S.FeedSection>
                     </S.MainContents>
-                    {!isMobileSize && (
+                    {!isMobile && (
                         <S.Recommend>
                             <S.ProfileBox>
                                 <div>

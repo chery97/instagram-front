@@ -14,6 +14,7 @@ const Contents = styled.div`
     justify-content: center;
     gap: 65px;
     margin-top: 35px;
+    width: 100%;
 `;
 
 const MainContents = styled.div`
