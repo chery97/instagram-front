@@ -55,6 +55,9 @@ const HeaderRightBox = styled.div`
 
 const StorySection = styled.section`
     padding: 8px 0;
+    .swiper {
+        padding: 0 8px;
+    }
     .swiper-slide {
         display: flex;
         flex-direction: column;
